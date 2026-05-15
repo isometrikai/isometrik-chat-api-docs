@@ -168,7 +168,7 @@ def doc_page_html(api_id: str, page_title: str) -> str:
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{page_title} · API reference</title>
+  <title>{page_title} · Isometrik</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -177,10 +177,15 @@ def doc_page_html(api_id: str, page_title: str) -> str:
 </head>
 <body class="docs-body">
   <header class="docs-header">
-    <a class="back-link" href="../index.html">← Developer portal</a>
+    <a class="back-link" href="../index.html">← Isometrik developer portal</a>
     <div class="docs-header__titles">
       <h1 class="docs-header__title">{page_title}</h1>
-      <p class="docs-header__subtitle">OpenAPI (Swagger) · static hosting</p>
+      <p class="docs-header__subtitle">Isometrik realtime chat · API reference</p>
+      <p class="docs-header__links">
+        <a href="https://www.isometrik.ai" rel="noopener noreferrer" target="_blank">https://www.isometrik.ai</a>
+        <span class="docs-header__links-sep">·</span>
+        <a href="https://admin.isometrik.ai" rel="noopener noreferrer" target="_blank">https://admin.isometrik.ai</a>
+      </p>
     </div>
   </header>
   <main class="docs-main">

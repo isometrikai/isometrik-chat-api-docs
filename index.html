@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-    content="Chat API developer portal — browse OpenAPI modules (users, messages, broadcasters, channels, auth, and more) with Swagger UI on GitHub Pages." />
-  <title>Chat API · Developer portal</title>
+    content="Isometrik realtime chat API reference — browse users, messages, broadcasters, channels, auth and more." />
+  <title>Isometrik · Chat API docs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -17,14 +17,20 @@
   <!--
     Homepage for static GitHub Pages hosting.
     API cards load from `./apis/catalog.json` (built by scripts/build-api-portal.py).
-    Repo layout: `/index.html` → portal, `/docs/*.html` → Swagger UI, `/apis/*.json` → specs.
+    Repo layout: `/index.html` → Isometrik portal, `/docs/*.html` → module reference UI, `/apis/*.json` → specs.
   -->
   <header class="portal-header">
-    <span class="portal-badge">OpenAPI · Realtime Chat</span>
-    <h1 class="portal-hero-title">API documentation portal</h1>
+    <span class="portal-badge">Isometrik Realtime Chat</span>
+    <h1 class="portal-hero-title">Isometrik chat services · API reference</h1>
     <p class="portal-hero-sub">
-      Phoenix / Elixir chat backend — explore each module in isolation. All pages are static; Swagger UI is loaded from a CDN and reads specs from <code
-        style="font-size:0.95em">/apis/</code>.
+      Phoenix / Elixir realtime chat — explore each module below. Specs are served from <code style="font-size:0.95em">/apis/</code>;
+      interactive docs load in your browser.
+    </p>
+    <p class="portal-brand-links">
+      <a href="https://www.isometrik.ai" rel="noopener noreferrer" target="_blank">https://www.isometrik.ai</a>
+      <span class="portal-brand-links__sep" aria-hidden="true">·</span>
+      <a href="https://admin.isometrik.ai" rel="noopener noreferrer" target="_blank">https://admin.isometrik.ai</a>
+      <span class="portal-brand-links__hint"> — website &amp; admin console</span>
     </p>
 
     <form class="toolbar" role="search" aria-label="Filter API modules" onsubmit="return false">
@@ -45,6 +51,10 @@
       <a href="./docs/cleanup.html">Cleanup</a> ·
       <a href="./docs/delivery-status.html">Delivery status</a> ·
       <a href="./docs/unread-messages.html">Unread messages</a>
+      <br />
+      <a href="https://www.isometrik.ai">https://www.isometrik.ai</a>
+      ·
+      <a href="https://admin.isometrik.ai">https://admin.isometrik.ai</a>
     </p>
   </noscript>
 
@@ -54,12 +64,14 @@
 
   <footer class="portal-footer">
     <p>
-      Spec JSON is generated without editing the Phoenix export bundles — see <code>scripts/build-api-portal.py</code>.
-      After changing <code>**/swagger-ui-init.js</code>, re-run that script before publishing.
+      Isometrik realtime chat —
+      <a href="https://www.isometrik.ai" rel="noopener noreferrer" target="_blank">https://www.isometrik.ai</a>
+      ·
+      <a href="https://admin.isometrik.ai" rel="noopener noreferrer" target="_blank">https://admin.isometrik.ai</a>.
+      Specs are extracted from Phoenix bundles without modifying them — run <code>scripts/build-api-portal.py</code> after updating <code>**/swagger-ui-init.js</code>.
     </p>
     <p>
-      <a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> (CDN) ·
-      <a href="./apis/catalog.json">Machine-readable catalog</a>
+      <a href="./apis/catalog.json">API catalog (JSON)</a>
     </p>
   </footer>
 

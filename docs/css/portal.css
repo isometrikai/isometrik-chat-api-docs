@@ -1,5 +1,5 @@
 /**
- * Shared styles for the Chat API documentation portal (homepage + Swagger pages).
+ * Shared styles for the Isometrik chat API docs portal (homepage + module pages).
  *
  * Reuse: import from both /index.html (`docs/css/portal.css`) and /docs/*.html (`./css/portal.css`).
  */
@@ -42,6 +42,18 @@ body.docs-body {
   font-family: var(--font-sans);
   color: var(--text-primary);
   background: var(--bg-deep);
+
+  /*
+   * Scoped tokens for Swagger UI overrides (Swagger ships a light-theme palette;
+   * without these, grey text sits on our dark chrome and washes out).
+   */
+  --sw-text: #e8eef7;
+  --sw-text-muted: #a8b7cc;
+  --sw-border: rgba(148, 163, 184, 0.28);
+  --sw-surface: #141c29;
+  --sw-surface-raised: #1a2535;
+  --sw-code-bg: #0a0f16;
+  --sw-input-bg: #121a28;
 }
 
 /* --- Homepage hero --- */
@@ -80,6 +92,36 @@ body.docs-body {
   font-size: 1.08rem;
   color: var(--text-muted);
   max-width: 52ch;
+}
+
+.portal-brand-links {
+  margin: 14px 0 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.portal-brand-links a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.portal-brand-links a:hover,
+.portal-brand-links a:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.portal-brand-links__sep {
+  margin: 0 0.35em;
+  opacity: 0.7;
+}
+
+.portal-brand-links__hint {
+  color: var(--text-muted);
+  font-weight: 400;
 }
 
 /* --- Homepage search --- */
@@ -148,20 +190,6 @@ body.docs-body {
   border-color: rgba(56, 189, 248, 0.45);
   transform: translateY(-2px);
   outline: none;
-}
-
-.api-card__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 700;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(74, 222, 128, 0.12));
-  color: var(--text-primary);
-  margin-bottom: 12px;
 }
 
 .api-card__title {
@@ -244,13 +272,47 @@ body.docs-body {
   color: var(--text-muted);
 }
 
+.docs-header__links {
+  margin: 10px 0 0;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.docs-header__links a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.docs-header__links a:hover,
+.docs-header__links a:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.docs-header__links-sep {
+  margin: 0 0.35em;
+  opacity: 0.6;
+}
+
 .docs-main #swagger-ui {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 12px clamp(12px, 3vw, 24px) 40px;
+  padding: 16px clamp(12px, 3vw, 28px) 48px;
 }
 
-/* Swagger UI on dark chrome (content area stays readable) */
+@media (min-width: 768px) {
+  .docs-main #swagger-ui {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: linear-gradient(
+        155deg,
+        rgba(56, 189, 248, 0.05),
+        transparent 42%
+      ),
+      var(--sw-surface, #141c29);
+  }
+}
 
 .swagger-ui .topbar {
   display: none;
@@ -258,6 +320,331 @@ body.docs-body {
 
 .docs-body .swagger-ui {
   filter: none;
+}
+
+/*
+ * ─── Swagger UI — dark readability (scoped to docs pages only; homepage unaffected) ───
+ * Tune body.docs-body --sw-* variables to adjust the embedded viewer globally.
+ */
+
+body.docs-body .swagger-ui,
+body.docs-body .swagger-ui .wrapper {
+  color: var(--sw-text);
+  font-family: var(--font-sans);
+}
+
+body.docs-body .swagger-ui a {
+  color: var(--accent);
+}
+
+body.docs-body .swagger-ui a:hover,
+body.docs-body .swagger-ui a:focus-visible {
+  color: #7dd3fc;
+}
+
+body.docs-body .swagger-ui .filter .operation-filter-input {
+  color: var(--sw-text);
+  background: var(--sw-input-bg);
+  border: 1px solid var(--sw-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0 0 12px;
+}
+
+body.docs-body .swagger-ui .filter .operation-filter-input:focus {
+  outline: 2px solid rgba(56, 189, 248, 0.35);
+  outline-offset: 1px;
+}
+
+body.docs-body .swagger-ui .info .title small {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui .info .title,
+body.docs-body .swagger-ui .info h1 {
+  color: var(--sw-text) !important;
+}
+
+body.docs-body .swagger-ui .info p,
+body.docs-body .swagger-ui .info li,
+body.docs-body .swagger-ui .info .base-url {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui .info h2,
+body.docs-body .swagger-ui .info h3 {
+  color: var(--sw-text) !important;
+}
+
+body.docs-body .swagger-ui .renderedMarkdown p,
+body.docs-body .swagger-ui .renderedMarkdown li,
+body.docs-body .swagger-ui .renderedMarkdown table,
+body.docs-body .swagger-ui .markdown p,
+body.docs-body .swagger-ui .markdown li,
+body.docs-body .swagger-ui table tbody tr td,
+body.docs-body .swagger-ui table thead tr td,
+body.docs-body .swagger-ui table thead tr th {
+  color: var(--sw-text-muted) !important;
+  border-color: var(--sw-border) !important;
+}
+
+body.docs-body .swagger-ui table thead tr th {
+  font-weight: 600;
+  color: var(--sw-text) !important;
+}
+
+body.docs-body .swagger-ui .markdown code,
+body.docs-body .swagger-ui .renderedMarkdown code {
+  background: var(--sw-code-bg);
+  color: #f1f5f9 !important;
+  border: 1px solid var(--sw-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+body.docs-body .swagger-ui .scheme-container {
+  background: var(--sw-surface-raised) !important;
+  border: 1px solid var(--sw-border);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+  box-shadow: none;
+}
+
+body.docs-body .swagger-ui select,
+body.docs-body .swagger-ui input[type="text"],
+body.docs-body .swagger-ui textarea,
+body.docs-body .swagger-ui .dialog-ux .modal-ux textarea {
+  background: var(--sw-input-bg) !important;
+  color: var(--sw-text) !important;
+  border: 1px solid var(--sw-border) !important;
+}
+
+body.docs-body .swagger-ui button.btn:not(.authorize) {
+  background: var(--sw-surface-raised);
+  color: var(--sw-text);
+  border: 1px solid var(--sw-border);
+  border-radius: 8px;
+}
+
+body.docs-body .swagger-ui button.btn:not(.authorize):hover {
+  background: #243044;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+  color: var(--sw-text) !important;
+}
+
+body.docs-body .swagger-ui .opblock-tag small {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui .parameter__name {
+  color: var(--sw-text) !important;
+}
+
+body.docs-body .swagger-ui .parameter__name.required::after {
+  color: var(--danger) !important;
+}
+
+body.docs-body .swagger-ui span.opblock-summary-path__deprecated,
+body.docs-body .swagger-ui .parameter__deprecated,
+body.docs-body .swagger-ui .parameter__extension,
+body.docs-body .swagger-ui .parameter__type,
+body.docs-body .swagger-ui .parameter__internal,
+body.docs-body .swagger-ui .prop-type {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui label {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui .opblock {
+  border-radius: var(--radius) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+body.docs-body .swagger-ui .opblock.opblock-get {
+  border-color: rgba(59, 158, 255, 0.55) !important;
+  background: rgba(59, 158, 255, 0.08) !important;
+}
+
+body.docs-body .swagger-ui .opblock.opblock-post {
+  border-color: rgba(74, 222, 128, 0.55) !important;
+  background: rgba(74, 222, 128, 0.08) !important;
+}
+
+body.docs-body .swagger-ui .opblock.opblock-put {
+  border-color: rgba(251, 191, 36, 0.55) !important;
+  background: rgba(251, 191, 36, 0.07) !important;
+}
+
+body.docs-body .swagger-ui .opblock.opblock-delete {
+  border-color: rgba(248, 113, 113, 0.55) !important;
+  background: rgba(248, 113, 113, 0.07) !important;
+}
+
+body.docs-body .swagger-ui .opblock.opblock-patch {
+  border-color: rgba(192, 132, 252, 0.5) !important;
+  background: rgba(192, 132, 252, 0.08) !important;
+}
+
+body.docs-body .swagger-ui .opblock.opblock-options {
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  background: rgba(148, 163, 184, 0.06) !important;
+}
+
+body.docs-body .swagger-ui .opblock.opblock-head {
+  border-color: rgba(45, 212, 191, 0.5) !important;
+  background: rgba(45, 212, 191, 0.07) !important;
+}
+
+body.docs-body .swagger-ui .opblock .opblock-summary {
+  border: none !important;
+}
+
+body.docs-body .swagger-ui .opblock-summary {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+body.docs-body .swagger-ui .opblock.is-open .opblock-summary {
+  border-bottom: none;
+}
+
+body.docs-body .swagger-ui .opblock-summary-method {
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  font-weight: 700;
+}
+
+body.docs-body .swagger-ui .opblock-summary-operation-id,
+body.docs-body .swagger-ui .opblock-summary-path,
+body.docs-body .swagger-ui .opblock-summary-description {
+  color: var(--sw-text) !important;
+}
+
+body.docs-body .swagger-ui .opblock-body {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-top: 1px solid var(--sw-border);
+}
+
+body.docs-body .swagger-ui .opblock-section-header {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.docs-body .swagger-ui .opblock-description-wrapper,
+body.docs-body .swagger-ui .opblock-description-wrapper p,
+body.docs-body .swagger-ui .opblock-description-wrapper th,
+body.docs-body .swagger-ui .opblock-description-wrapper td {
+  color: var(--sw-text-muted) !important;
+  background: transparent !important;
+}
+
+body.docs-body .swagger-ui pre.microlight,
+body.docs-body .swagger-ui .highlight-code pre {
+  background: var(--sw-code-bg) !important;
+  border: 1px solid var(--sw-border);
+  border-radius: 8px;
+}
+
+body.docs-body .swagger-ui pre.microlight,
+body.docs-body .swagger-ui .curl {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui svg.arrow {
+  fill: var(--sw-text-muted);
+}
+
+body.docs-body .swagger-ui section.models span.model-title,
+body.docs-body .swagger-ui span.model-title,
+body.docs-body .swagger-ui section.models.is-open > h4 {
+  color: var(--sw-text) !important;
+}
+
+body.docs-body .swagger-ui section.models.is-open > h4 .model-hint__text {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui section.models.is-open > h4 {
+  border-color: var(--sw-border);
+}
+
+body.docs-body .swagger-ui section.models div.model-container {
+  margin: 0 0 20px !important;
+  border-radius: var(--radius);
+  border-color: var(--sw-border) !important;
+  background: var(--sw-surface-raised) !important;
+}
+
+body.docs-body .swagger-ui section.models div.model.box {
+  background: var(--sw-input-bg) !important;
+}
+
+body.docs-body .swagger-ui .response-col_links,
+body.docs-body .swagger-ui .response-col_links .response-undocumented,
+body.docs-body .swagger-ui .response-col_description__inner {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui table.responses-table .response-col_status {
+  font-weight: 700;
+}
+
+body.docs-body .swagger-ui .tab li button.tablinks {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui .tab li button.tablinks.active {
+  color: var(--accent) !important;
+  border-bottom: 3px solid var(--accent);
+}
+
+body.docs-body .swagger-ui button.execute {
+  background: var(--accent) !important;
+  color: var(--bg-deep) !important;
+  border-color: var(--accent) !important;
+  font-weight: 700;
+}
+
+body.docs-body .swagger-ui button.execute:hover {
+  filter: brightness(1.06);
+}
+
+body.docs-body .swagger-ui .btn.authorize,
+body.docs-body .swagger-ui .btn.authorize span {
+  background: var(--sw-surface-raised) !important;
+  border-color: var(--sw-border) !important;
+  color: var(--sw-text) !important;
+}
+
+body.docs-body .swagger-ui .dialog-ux,
+body.docs-body .swagger-ui .modal-ux-inner {
+  background: var(--sw-surface) !important;
+  border: 1px solid var(--sw-border);
+  color: var(--sw-text);
+}
+
+body.docs-body .swagger-ui .modal-ux-header h3 {
+  color: var(--sw-text);
+}
+
+body.docs-body .swagger-ui .errors-wrapper {
+  background: rgba(248, 113, 113, 0.1) !important;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+}
+
+body.docs-body .swagger-ui .errors-wrapper .errors small {
+  color: var(--sw-text-muted) !important;
+}
+
+body.docs-body .swagger-ui .errors-wrapper .errors h4 {
+  color: var(--danger) !important;
 }
 
 /* --- Noscript fallback --- */

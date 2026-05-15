@@ -8,39 +8,26 @@
 (function () {
   "use strict";
 
-  function inferInitials(title) {
-    var parts = title.split(/\s+/).filter(Boolean);
-    if (!parts.length) return "?";
-    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-    return (parts[0][0] + parts[1][0]).toUpperCase();
-  }
-
   function buildCard(api) {
     var a = document.createElement("a");
     a.className = "api-card";
     a.href = "./docs/" + encodeURIComponent(api.id) + ".html";
-    a.setAttribute("data-search", (
-      api.title + " " + (api.specTitle || "") + " " + api.description + " " + api.file
-    ).toLowerCase());
-
-    var initials = inferInitials(api.title);
+    a.setAttribute(
+      "data-search",
+      (api.title + " " + (api.specTitle || "") + " " + api.description + " " + api.file).toLowerCase()
+    );
 
     a.innerHTML =
-      '<span class="api-card__icon" aria-hidden="true">' +
-      initials +
-      "</span>" +
       '<h2 class="api-card__title">' +
       escapeHtml(api.title) +
       "</h2>" +
-      (api.specTitle
-        ? '<p class="api-card__spec-title">' + escapeHtml(api.specTitle) + "</p>"
-        : "") +
+      (api.specTitle ? '<p class="api-card__spec-title">' + escapeHtml(api.specTitle) + "</p>" : "") +
       '<p class="api-card__desc">' +
       escapeHtml(api.description || "") +
       "</p>" +
-      '<span class="api-card__cta">Open API reference →</span>';
+      '<span class="api-card__cta">View reference →</span>';
 
-    a.title = api.title + " — Open Swagger UI";
+    a.title = api.title + " — Isometrik API reference";
 
     return a;
   }
