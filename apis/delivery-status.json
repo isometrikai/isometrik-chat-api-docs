@@ -1,0 +1,1743 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/chat/messages/status": {
+      "get": {
+        "tags": [
+          "DeliveryStatus"
+        ],
+        "summary": "Fetch delivered to and read by all status of a message in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/fetch_messages_read_delivery_status"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_fetch_messages_read_delivery_status"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_message_delivery_status"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_fetch_messages_read_delivery_status"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for fetching delivered to and read by all status of a message in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is fetching delivered to and read by all status for message."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation containing message to fetch delivered to and read by all status for."
+          },
+          {
+            "x-example": "60085d5e21a38e010f5791bf,60140e7121a38e089b0c4ea8",
+            "type": "string",
+            "required": true,
+            "name": "messageIds",
+            "in": "query",
+            "description": "Comma seperated list of ids of the message to fetch delivered to and read by all status for."
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.DeliveryStatusController.fetch_messages_read_delivery_status",
+        "description": "Fetch delivered to and read by all status of a message in a conversation in a project in an account."
+      }
+    },
+    "/chat/message/status/read/pending": {
+      "get": {
+        "tags": [
+          "DeliveryStatus"
+        ],
+        "summary": "Fetch pending read status of a message in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/fetch_message_pending_read_status"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_fetch_message_pending_read_status"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_message_delivery_status"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_message_delivery_status"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for fetching pending read status of a message in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is fetching pending read status for message."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation containing message to fetch pending read status for."
+          },
+          {
+            "x-example": "60085d5e21a38e010f5791bf",
+            "type": "string",
+            "required": true,
+            "name": "messageId",
+            "in": "query",
+            "description": "Id of the message to fetch pending read status for."
+          },
+          {
+            "x-example": 10,
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "description": "Number of users(for whom message read is pending) to be fetched.Allowed values are [1,20]",
+            "default": 20
+          },
+          {
+            "x-example": 10,
+            "type": "integer",
+            "required": false,
+            "name": "skip",
+            "in": "query",
+            "description": "Number of users(for whom message read is pending) to be skipped before fetching users(used for paging).",
+            "default": 0
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.DeliveryStatusController.fetch_message_pending_read_status",
+        "description": "Fetch pending read status of a message in a conversation in a project in an account."
+      }
+    },
+    "/chat/message/status/read": {
+      "get": {
+        "tags": [
+          "DeliveryStatus"
+        ],
+        "summary": "Fetch read status of a message in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/fetch_message_read_status"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_fetch_message_read_status"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_message_delivery_status"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_message_delivery_status"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for fetching read status of a message in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is fetching read status for message."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation containing message to fetch read status for."
+          },
+          {
+            "x-example": "60085d5e21a38e010f5791bf",
+            "type": "string",
+            "required": true,
+            "name": "messageId",
+            "in": "query",
+            "description": "Id of the message to fetch read status for."
+          },
+          {
+            "x-example": 10,
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "description": "Number of users(by whom message has been read) to be fetched.Allowed values are [1,20]",
+            "default": 20
+          },
+          {
+            "x-example": 10,
+            "type": "integer",
+            "required": false,
+            "name": "skip",
+            "in": "query",
+            "description": "Number of users(by whom message has been read) to be skipped before fetching users(used for paging).",
+            "default": 0
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.DeliveryStatusController.fetch_message_read_status",
+        "description": "Fetch read status of a message in a conversation in a project in an account."
+      }
+    },
+    "/chat/message/status/delivery/pending": {
+      "get": {
+        "tags": [
+          "DeliveryStatus"
+        ],
+        "summary": "Fetch pending delivery status of a message in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/fetch_message_pending_delivery_status"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_fetch_message_pending_delivery_status"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_message_delivery_status"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_message_delivery_status"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for fetching pending delivery status of a message in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is fetching pending delivery status for message."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation containing message to fetch pending delivery status for."
+          },
+          {
+            "x-example": "60085d5e21a38e010f5791bf",
+            "type": "string",
+            "required": true,
+            "name": "messageId",
+            "in": "query",
+            "description": "Id of the message to fetch pending delivery status for."
+          },
+          {
+            "x-example": 10,
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "description": "Number of users(for whom message delivery is pending) to be fetched.Allowed values are [1,20]",
+            "default": 20
+          },
+          {
+            "x-example": 10,
+            "type": "integer",
+            "required": false,
+            "name": "skip",
+            "in": "query",
+            "description": "Number of users(for whom message delivery is pending) to be skipped before fetching users(used for paging).",
+            "default": 0
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.DeliveryStatusController.fetch_message_pending_delivery_status",
+        "description": "Fetch pending delivery status of a message in a conversation in a project in an account."
+      }
+    },
+    "/chat/message/status/delivery": {
+      "get": {
+        "tags": [
+          "DeliveryStatus"
+        ],
+        "summary": "Fetch delivery status of a message in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/fetch_message_delivery_status"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_fetch_message_delivery_status"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_message_delivery_status"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_message_delivery_status"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for fetching delivery status of a message in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is fetching delivery status for message."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation containing message to fetch delivery status for."
+          },
+          {
+            "x-example": "60085d5e21a38e010f5791bf",
+            "type": "string",
+            "required": true,
+            "name": "messageId",
+            "in": "query",
+            "description": "Id of the message to fetch delivery status for."
+          },
+          {
+            "x-example": 10,
+            "type": "integer",
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "description": "Number of users(to whom message has been delivered) to be fetched.Allowed values are [1,20]",
+            "default": 20
+          },
+          {
+            "x-example": 10,
+            "type": "integer",
+            "required": false,
+            "name": "skip",
+            "in": "query",
+            "description": "Number of users(to whom message has been delivered) to be skipped before fetching users(used for paging).",
+            "default": 0
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.DeliveryStatusController.fetch_message_delivery_status",
+        "description": "Fetch delivery status of a message in a conversation in a project in an account."
+      }
+    },
+    "/chat/indicator/typing": {
+      "post": {
+        "tags": [
+          "Indicator"
+        ],
+        "summary": "Send typing message in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/send_typing_message"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_send_typing_message"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_send_typing_message"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_send_typing_message"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used to send typing message in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is sending the typing message in conversation."
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/body_send_typing_message"
+            },
+            "required": true,
+            "name": "body",
+            "in": "body",
+            "description": "Body parameters for sending typing message in a conversation."
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.IndicatorController.send_typing_message",
+        "description": "Send typing message in a conversation in a project in an account."
+      }
+    },
+    "/chat/indicator/read": {
+      "put": {
+        "tags": [
+          "Indicator"
+        ],
+        "summary": "Mark message as read in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/mark_message_as_read"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_mark_message_as_read"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_mark_message_as_read"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_mark_message_as_read"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used to mark message as read in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is marking the message as read."
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/body_mark_message_as_read"
+            },
+            "required": true,
+            "name": "body",
+            "in": "body",
+            "description": "Body parameters for marking message as read in a conversation."
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.IndicatorController.mark_message_as_read",
+        "description": "Mark message as read in a conversation in a project in an account."
+      }
+    },
+    "/chat/indicator/delivered": {
+      "put": {
+        "tags": [
+          "Indicator"
+        ],
+        "summary": "Mark message as delivered in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/mark_message_as_delivered"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_mark_message_as_delivered"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_mark_message_as_delivered"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_mark_message_as_delivered"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used to mark message as delivered in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is marking the message as delivered."
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/body_mark_message_as_delivered"
+            },
+            "required": true,
+            "name": "body",
+            "in": "body",
+            "description": "Body parameters for marking message as delivered in a conversation."
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.IndicatorController.mark_message_as_delivered",
+        "description": "Mark message as delivered in a conversation in a project in an account."
+      }
+    },
+    "/chat/conversation/status/read": {
+      "get": {
+        "tags": [
+          "DeliveryStatus"
+        ],
+        "summary": "Fetch last message read time in conversation of all users in a conversation.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/fetch_conversation_read_status"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_fetch_conversation_read_status"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_fetch_conversation_read_status"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_fetch_conversation_read_status"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for fetching last message read time in conversation of all users in a conversation in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is fetching last message read time in conversation."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation to fetch last message read time for."
+          }
+        ],
+        "operationId": "Isometrik.DeliverystatusWeb.DeliveryStatusController.fetch_conversation_read_status",
+        "description": "Fetch last message read time in conversation of all users in a conversation in a project in an account."
+      }
+    }
+  },
+  "info": {
+    "version": "1.0",
+    "title": "DeliverystatusWeb"
+  },
+  "definitions": {
+    "Error_403_send_typing_message": {
+      "type": "object",
+      "title": "Error_403_send_typing_message",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Typing events disabled for conversation, 2 => Allowed messages limit shall be exceeded, 3 => Sender is blocked, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+    },
+    "Error_404_mark_message_as_delivered": {
+      "type": "object",
+      "title": "Error_404_mark_message_as_delivered",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found, 1 => User not found, 2 => Message not found or user can't mark message as delivered."
+    },
+    "body_mark_message_as_read": {
+      "type": "object",
+      "title": "Body of the mark message as read in conversation request",
+      "required": [
+        "messageId",
+        "conversationId"
+      ],
+      "properties": {
+        "messageId": {
+          "type": "string",
+          "description": "Id of the message to be marked as read."
+        },
+        "conversationId": {
+          "type": "string",
+          "description": "Id of the conversation containing message to be marked as read."
+        }
+      },
+      "example": {
+        "messageId": "6012b05021a38e18bed7d372",
+        "conversationId": "5fe0b8c921a38ec829956130"
+      },
+      "description": "Details of the mark message as read in conversation request."
+    },
+    "Error_404_send_typing_message": {
+      "type": "object",
+      "title": "Error_404_send_typing_message",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found, 1 => User not found."
+    },
+    "mark_message_as_delivered": {
+      "type": "object",
+      "title": "Response of mark message as delivered in conversation request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "Message of successfully marking a message as delivered in conversation."
+        }
+      },
+      "example": {
+        "msg": "Message marked as delivered successfully."
+      },
+      "description": "Successfully marked message as delivered in conversation."
+    },
+    "Error_400_fetch_messages_read_delivery_status": {
+      "type": "object",
+      "title": "Error_400_fetch_messages_read_delivery_status",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to fetch read-delivery status."
+    },
+    "DeliveryStatusPendingUsers": {
+      "type": "array",
+      "title": "Pending users fetch",
+      "items": {
+        "$ref": "#/definitions/DeliveryStatusPendingUser"
+      },
+      "description": "All pending users list."
+    },
+    "Error_400_mark_message_as_delivered": {
+      "type": "object",
+      "title": "Error_400_mark_message_as_delivered",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to mark message as delivered."
+    },
+    "DeliveryStatusPendingUser": {
+      "type": "object",
+      "title": "Pending user details",
+      "required": [
+        "metaData",
+        "lastSeen",
+        "online",
+        "userId",
+        "userIdentifier",
+        "userProfileImageUrl",
+        "userName"
+      ],
+      "properties": {
+        "userProfileImageUrl": {
+          "type": "string",
+          "description": "Profilepic associated with the given user."
+        },
+        "userName": {
+          "type": "string",
+          "description": "Name associated with the given user."
+        },
+        "userIdentifier": {
+          "type": "string",
+          "description": "Identifier associated with the given user."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Id associated with the given user."
+        },
+        "online": {
+          "type": "boolean",
+          "description": "Whether user is online now."
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Object containing metadata of the user, if any."
+        },
+        "lastSeen": {
+          "type": "integer",
+          "description": "Epoch time at which user was last seen online.Value is -1 incase user is online now"
+        }
+      },
+      "description": "Model containing details of the pending user fetched."
+    },
+    "Error_400_fetch_message_pending_read_status": {
+      "type": "object",
+      "title": "Error_400_fetch_message_pending_read_status",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to fetch pending read status."
+    },
+    "ConversationReadStatusUser": {
+      "type": "object",
+      "title": "User details",
+      "required": [
+        "v",
+        "metaData",
+        "lastSeen",
+        "online",
+        "userId",
+        "userIdentifier",
+        "userProfileImageUrl",
+        "userName"
+      ],
+      "properties": {
+        "v": {
+          "type": "integer",
+          "description": "Epoch time at which user has last read a message in conversation."
+        },
+        "userProfileImageUrl": {
+          "type": "string",
+          "description": "Profilepic associated with the given user."
+        },
+        "userName": {
+          "type": "string",
+          "description": "Name associated with the given user."
+        },
+        "userIdentifier": {
+          "type": "string",
+          "description": "Identifier associated with the given user."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Id associated with the given user."
+        },
+        "online": {
+          "type": "boolean",
+          "description": "Whether user is online now."
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Object containing metadata of the user, if any."
+        },
+        "lastSeen": {
+          "type": "integer",
+          "description": "Epoch time at which user was last seen online.Value is -1 incase user is online now"
+        }
+      },
+      "description": "Model containing details of the user fetched."
+    },
+    "fetch_message_read_status": {
+      "type": "object",
+      "title": "Response of fetch message read status request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "users": {
+          "$ref": "#/definitions/DeliveryStatusUsers"
+        },
+        "msg": {
+          "type": "string",
+          "description": "Message of read status of a message being fetched successfully."
+        }
+      },
+      "example": {
+        "users": [
+          {
+            "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+            "userName": "koko",
+            "userIdentifier": "jojo2@lolo.com",
+            "userId": "5fb4feb921a38e7b81fac663",
+            "timestamp": 1611163480921,
+            "online": false,
+            "metaData": {
+              "country": "India"
+            },
+            "lastSeen": -1
+          }
+        ],
+        "msg": "Read by users fetched successfully."
+      },
+      "description": "Message read status fetched successfully."
+    },
+    "Error_403_mark_message_as_read": {
+      "type": "object",
+      "title": "Error_403_mark_message_as_read",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Read events disabled for conversation, 2 => Allowed messages limit shall be exceeded, 3 => User is blocked, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+    },
+    "Error_404_fetch_messages_read_delivery_status": {
+      "type": "object",
+      "title": "Error_404_fetch_messages_read_delivery_status",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found, 1 => Messages not found."
+    },
+    "fetch_conversation_read_status": {
+      "type": "object",
+      "title": "Response of fetch last message read time in conversation of all users request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "users": {
+          "$ref": "#/definitions/ConversationReadStatusUsers"
+        },
+        "msg": {
+          "type": "string",
+          "description": "Message of last message read time in conversation of all users being fetched successfully."
+        }
+      },
+      "example": {
+        "users": [
+          {
+            "v": 1611163480921,
+            "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+            "userName": "koko",
+            "userIdentifier": "jojo2@lolo.com",
+            "userId": "5fb4feb921a38e7b81fac663",
+            "online": false,
+            "metaData": {
+              "country": "India"
+            },
+            "lastSeen": -1
+          }
+        ],
+        "msg": "Read by users in conversation fetched successfully."
+      },
+      "description": "Last message read time in conversation of all users fetched successfully."
+    },
+    "fetch_message_pending_read_status": {
+      "type": "object",
+      "title": "Response of fetch message pending read status request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "users": {
+          "$ref": "#/definitions/DeliveryStatusPendingUsers"
+        },
+        "msg": {
+          "type": "string",
+          "description": "Message of pending read status of a message being fetched successfully."
+        }
+      },
+      "example": {
+        "users": [
+          {
+            "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+            "userName": "koko",
+            "userIdentifier": "jojo2@lolo.com",
+            "userId": "5fb4feb921a38e7b81fac663",
+            "online": false,
+            "metaData": {
+              "country": "India"
+            },
+            "lastSeen": -1
+          }
+        ],
+        "msg": "Pending read by users fetched successfully."
+      },
+      "description": "Message pending read status fetched successfully."
+    },
+    "DeliveryStatusMessages": {
+      "type": "array",
+      "title": "Delivery/read status of messages fetch",
+      "items": {
+        "$ref": "#/definitions/DeliveryStatusMessage"
+      },
+      "description": "All message's delivery/read status list."
+    },
+    "fetch_messages_read_delivery_status": {
+      "type": "object",
+      "title": "Response of fetch messages's delivery/read status request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "Message of delivery/read status of messages's being fetched successfully."
+        },
+        "messages": {
+          "$ref": "#/definitions/DeliveryStatusMessages"
+        }
+      },
+      "example": {
+        "msg": "Read-delivery status fetched successfully.",
+        "messages": [
+          {
+            "readByAll": true,
+            "messageId": "5fb4feb921a38e7b81fac663",
+            "deliveredToAll": true
+          }
+        ]
+      },
+      "description": "Messages's delivery/read status fetched successfully."
+    },
+    "Error_400_send_typing_message": {
+      "type": "object",
+      "title": "Error_400_send_typing_message",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to send typing events."
+    },
+    "fetch_message_pending_delivery_status": {
+      "type": "object",
+      "title": "Response of fetch message pending delivery status request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "users": {
+          "$ref": "#/definitions/DeliveryStatusPendingUsers"
+        },
+        "msg": {
+          "type": "string",
+          "description": "Message of pending delivery status of a message being fetched successfully."
+        }
+      },
+      "example": {
+        "users": [
+          {
+            "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+            "userName": "koko",
+            "userIdentifier": "jojo2@lolo.com",
+            "userId": "5fb4feb921a38e7b81fac663",
+            "online": false,
+            "metaData": {
+              "country": "India"
+            },
+            "lastSeen": -1
+          }
+        ],
+        "msg": "Delivery pending to users fetched successfully."
+      },
+      "description": "Message pending delivery status fetched successfully."
+    },
+    "Error_400_fetch_message_pending_delivery_status": {
+      "type": "object",
+      "title": "Error_400_fetch_message_pending_delivery_status",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to fetch pending delivery status."
+    },
+    "Error_403_message_delivery_status": {
+      "type": "object",
+      "title": "Error_403_message_delivery_status",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Read events disabled for conversation, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+    },
+    "Error_404_message_delivery_status": {
+      "type": "object",
+      "title": "Error_404_message_delivery_status",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found, 1 => Message not found, 2 => Users not found."
+    },
+    "Error_403_mark_message_as_delivered": {
+      "type": "object",
+      "title": "Error_403_mark_message_as_delivered",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Read events disabled for conversation, 2 => Allowed messages limit shall be exceeded, 3 => User is blocked, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+    },
+    "send_typing_message": {
+      "type": "object",
+      "title": "Response of send typing message in conversation request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "Message of typing message in conversation being successfully sent."
+        }
+      },
+      "example": {
+        "msg": "Typing event sent successfully."
+      },
+      "description": "Successfully sent typing message in conversation."
+    },
+    "ConversationReadStatusUsers": {
+      "type": "array",
+      "title": "Users fetch",
+      "items": {
+        "$ref": "#/definitions/ConversationReadStatusUser"
+      },
+      "description": "All users list."
+    },
+    "body_mark_message_as_delivered": {
+      "type": "object",
+      "title": "Body of the mark message as delivered in conversation request",
+      "required": [
+        "messageId",
+        "conversationId"
+      ],
+      "properties": {
+        "messageId": {
+          "type": "string",
+          "description": "Id of the message to be marked as delivered."
+        },
+        "conversationId": {
+          "type": "string",
+          "description": "Id of the conversation containing message to be marked as delivered."
+        }
+      },
+      "example": {
+        "messageId": "6012b05021a38e18bed7d372",
+        "conversationId": "5fe0b8c921a38ec829956130"
+      },
+      "description": "Details of the mark message as delivered in conversation request."
+    },
+    "Error_503": {
+      "type": "object",
+      "title": "Error_503",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Service Unavailable."
+    },
+    "Error_400_fetch_conversation_read_status": {
+      "type": "object",
+      "title": "Error_400_fetch_conversation_read_status",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to fetch conversation read status."
+    },
+    "Error_403_fetch_conversation_read_status": {
+      "type": "object",
+      "title": "Error_403_fetch_conversation_read_status",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "11"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+    },
+    "DeliveryStatusMessage": {
+      "type": "object",
+      "title": "Delivery/read status for message details",
+      "required": [
+        "messageId",
+        "readByAll",
+        "deliveredtoAll"
+      ],
+      "properties": {
+        "readByAll": {
+          "type": "boolean",
+          "description": "Whether message has been read by all."
+        },
+        "messageId": {
+          "type": "string",
+          "description": "Id of the message for which deliver/read status has been fetched."
+        },
+        "deliveredtoAll": {
+          "type": "boolean",
+          "description": "Whether message has been delivered to all."
+        }
+      },
+      "description": "Model containing details of the delivery/read status for message."
+    },
+    "Error_400_fetch_message_delivery_status": {
+      "type": "object",
+      "title": "Error_400_fetch_message_delivery_status",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to fetch delivery status."
+    },
+    "Error_400_mark_message_as_read": {
+      "type": "object",
+      "title": "Error_400_mark_message_as_read",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to mark message as read."
+    },
+    "Error_400_fetch_message_read_status": {
+      "type": "object",
+      "title": "Error_400_fetch_message_read_status",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to fetch read status."
+    },
+    "Error_404_mark_message_as_read": {
+      "type": "object",
+      "title": "Error_404_mark_message_as_read",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found, 1 => User not found, 2 => Message not found or user can't mark message as read."
+    },
+    "DeliveryStatusUsers": {
+      "type": "array",
+      "title": "Users fetch",
+      "items": {
+        "$ref": "#/definitions/DeliveryStatusUser"
+      },
+      "description": "All users list."
+    },
+    "mark_message_as_read": {
+      "type": "object",
+      "title": "Response of mark message as read in conversation request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "Message of successfully marking a message as read in conversation."
+        }
+      },
+      "example": {
+        "msg": "Message marked as read successfully."
+      },
+      "description": "Successfully marked message as read in conversation."
+    },
+    "body_send_typing_message": {
+      "type": "object",
+      "title": "Body of the send typing message in conversation request",
+      "required": [
+        "conversationId"
+      ],
+      "properties": {
+        "conversationId": {
+          "type": "string",
+          "description": "Id of the conversation to send typing message in."
+        }
+      },
+      "example": {
+        "conversationId": "5fe0b8c921a38ec829956130"
+      },
+      "description": "Details of the send typing message in conversation request."
+    },
+    "DeliveryStatusUser": {
+      "type": "object",
+      "title": "User details",
+      "required": [
+        "timestamp",
+        "metaData",
+        "lastSeen",
+        "online",
+        "userId",
+        "userIdentifier",
+        "userProfileImageUrl",
+        "userName"
+      ],
+      "properties": {
+        "userProfileImageUrl": {
+          "type": "string",
+          "description": "Profilepic associated with the given user."
+        },
+        "userName": {
+          "type": "string",
+          "description": "Name associated with the given user."
+        },
+        "userIdentifier": {
+          "type": "string",
+          "description": "Identifier associated with the given user."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Id associated with the given user."
+        },
+        "timestamp": {
+          "type": "integer",
+          "description": "Epoch time at which message has been read/delivered by/to user."
+        },
+        "online": {
+          "type": "boolean",
+          "description": "Whether user is online now."
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Object containing metadata of the user, if any."
+        },
+        "lastSeen": {
+          "type": "integer",
+          "description": "Epoch time at which user was last seen online.Value is -1 incase user is online now"
+        }
+      },
+      "description": "Model containing details of the user fetched."
+    },
+    "Error_422": {
+      "type": "object",
+      "title": "Error_422",
+      "properties": {
+        "error": {
+          "type": "object",
+          "required": [
+            "error_key"
+          ],
+          "properties": {
+            "error_key": {
+              "type": "array",
+              "example": [
+                "The message of the first error raised.",
+                "The message of the second error raised."
+              ],
+              "description": "Array containing list of error messages."
+            }
+          }
+        }
+      },
+      "description": "Unprocessable entity."
+    },
+    "fetch_message_delivery_status": {
+      "type": "object",
+      "title": "Response of fetch message delivery status request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "users": {
+          "$ref": "#/definitions/DeliveryStatusUsers"
+        },
+        "msg": {
+          "type": "string",
+          "description": "Message of delivery status of a message being fetched successfully."
+        }
+      },
+      "example": {
+        "users": [
+          {
+            "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+            "userName": "koko",
+            "userIdentifier": "jojo2@lolo.com",
+            "userId": "5fb4feb921a38e7b81fac663",
+            "timestamp": 1611163480921,
+            "online": false,
+            "metaData": {
+              "country": "India"
+            },
+            "lastSeen": -1
+          }
+        ],
+        "msg": "Delivered to users fetched successfully."
+      },
+      "description": "Message delivery status fetched successfully."
+    },
+    "Error_404_fetch_conversation_read_status": {
+      "type": "object",
+      "title": "Error_404_fetch_conversation_read_status",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found, 1 => Users not found."
+    }
+  }
+}

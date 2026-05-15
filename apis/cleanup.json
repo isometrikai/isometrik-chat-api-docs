@@ -1,0 +1,645 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/chat/messages/self": {
+      "delete": {
+        "tags": [
+          "MessageDelete"
+        ],
+        "summary": "Remove messages in conversation for self.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/remove_messages"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_remove_messages"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_delete_messages"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_delete_messages"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for removing messages in conversation for self in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is removing messages for self from a conversation."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation from which to remove messages for self."
+          },
+          {
+            "x-example": "5ffd543621a38e11ed4e32e4,5ffd544621a38e11edf5b6e3",
+            "type": "string",
+            "required": true,
+            "name": "messageIds",
+            "in": "query",
+            "description": "Comma seperated list of message ids to be removed for self from conversation."
+          }
+        ],
+        "operationId": "Isometrik.CleanupWeb.MessageDeleteController.remove_messages",
+        "description": "Remove messages in conversation for self in a project in an account."
+      }
+    },
+    "/chat/messages/everyone": {
+      "delete": {
+        "tags": [
+          "MessageDelete"
+        ],
+        "summary": "Remove messages in conversation for everyone.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/remove_messages_for_everyone"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_remove_messages_for_everyone"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_delete_messages"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_delete_messages"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for removing messages in conversation for everyone in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is removing messages for everyone from a conversation."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation from which to remove messages for everyone."
+          },
+          {
+            "x-example": "5ffd543621a38e11ed4e32e4,5ffd544621a38e11edf5b6e3",
+            "type": "string",
+            "required": true,
+            "name": "messageIds",
+            "in": "query",
+            "description": "Comma seperated list of message ids to be removed for everyone from conversation."
+          }
+        ],
+        "operationId": "Isometrik.CleanupWeb.MessageDeleteController.remove_messages_for_everyone",
+        "description": "Remove messages in conversation for everyone in a project in an account."
+      }
+    },
+    "/chat/conversation/local": {
+      "delete": {
+        "tags": [
+          "ConversationClear"
+        ],
+        "summary": "Delete a conversation for self.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/delete_conversation_locally"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_delete_conversation_locally"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_delete_conversation_locally"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_delete_conversation_locally"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for deleting a conversation for self in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is deleting a conversation for self."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation which is being deleted for self."
+          }
+        ],
+        "operationId": "Isometrik.CleanupWeb.ConversationClearController.delete_conversation_locally",
+        "description": "Delete a conversation for self in a project in an account."
+      }
+    },
+    "/chat/conversation/clear": {
+      "delete": {
+        "tags": [
+          "ConversationClear"
+        ],
+        "summary": "Remove all messages in conversation for self.",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/clear_conversation"
+            },
+            "description": "Ok"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error_400_clear_conversation"
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error_403_clear_conversation"
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Error_404_clear_conversation"
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/Error_422"
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/Error_503"
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+            "type": "string",
+            "required": true,
+            "name": "licenseKey",
+            "in": "header",
+            "description": "License key to be used for removing all messages in conversation for self in a project in an account."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+            "type": "string",
+            "required": true,
+            "name": "appSecret",
+            "in": "header",
+            "description": "App secret associated with the license key used."
+          },
+          {
+            "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+            "type": "string",
+            "required": true,
+            "name": "userToken",
+            "in": "header",
+            "description": "Token of the user who is removing messages for self from a conversation."
+          },
+          {
+            "x-example": "5d2c6a8a21a38e07dadb1808",
+            "type": "string",
+            "required": true,
+            "name": "conversationId",
+            "in": "query",
+            "description": "Id of the conversation from which to remove all messages for self."
+          }
+        ],
+        "operationId": "Isometrik.CleanupWeb.ConversationClearController.clear_conversation",
+        "description": "Remove all messages in conversation for self in a project in an account."
+      }
+    }
+  },
+  "info": {
+    "version": "1.0",
+    "title": "CleanupWeb"
+  },
+  "definitions": {
+    "remove_messages_for_everyone": {
+      "type": "object",
+      "title": "Response of remove messages for everyone in conversation request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "Message of successfull removal of messages for everyone."
+        }
+      },
+      "example": {
+        "msg": "Messages removed successfully for everyone."
+      },
+      "description": "Successfully removed messages for everyone in conversation."
+    },
+    "remove_messages": {
+      "type": "object",
+      "title": "Response of remove messages for self in conversation request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "Message of successfull removal of messages for self."
+        }
+      },
+      "example": {
+        "msg": "Messages removed successfully."
+      },
+      "description": "Successfully removed messages for self in conversation."
+    },
+    "delete_conversation_locally": {
+      "type": "object",
+      "title": "Response of delete conversation locally request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "Message of conversation being deleted locally successfully."
+        }
+      },
+      "example": {
+        "msg": "Conversation deleted successfully."
+      },
+      "description": "Successfully deleted conversation locally."
+    },
+    "clear_conversation": {
+      "type": "object",
+      "title": "Response of clear conversation request",
+      "required": [
+        "msg"
+      ],
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "Message of successfull removal of messages for conversation."
+        }
+      },
+      "example": {
+        "msg": "Conversation cleared successfully."
+      },
+      "description": "Successfully removed all messages for conversation."
+    },
+    "Error_503": {
+      "type": "object",
+      "title": "Error_503",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Service Unavailable."
+    },
+    "Error_422": {
+      "type": "object",
+      "title": "Error_422",
+      "properties": {
+        "error": {
+          "type": "object",
+          "required": [
+            "error_key"
+          ],
+          "properties": {
+            "error_key": {
+              "type": "array",
+              "example": [
+                "The message of the first error raised.",
+                "The message of the second error raised."
+              ],
+              "description": "Array containing list of error messages."
+            }
+          }
+        }
+      },
+      "description": "Unprocessable entity."
+    },
+    "Error_404_delete_messages": {
+      "type": "object",
+      "title": "Error_404_delete_messages",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found."
+    },
+    "Error_404_delete_conversation_locally": {
+      "type": "object",
+      "title": "Error_404_delete_conversation_locally",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found."
+    },
+    "Error_404_clear_conversation": {
+      "type": "object",
+      "title": "Error_404_clear_conversation",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => licenseKey not found."
+    },
+    "Error_403_delete_messages": {
+      "type": "object",
+      "title": "Error_403_delete_messages",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Allowed messages limit shall be exceeded, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+    },
+    "Error_403_delete_conversation_locally": {
+      "type": "object",
+      "title": "Error_403_delete_conversation_locally",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Allowed messages limit shall be exceeded, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+    },
+    "Error_403_clear_conversation": {
+      "type": "object",
+      "title": "Error_403_clear_conversation",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Allowed messages limit shall be exceeded, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+    },
+    "Error_400_remove_messages_for_everyone": {
+      "type": "object",
+      "title": "Error_400_remove_messages_for_everyone",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Conversation not found or not allowed to remove messages, 1 => Messages not found or not allowed to remove messages for everyone."
+    },
+    "Error_400_remove_messages": {
+      "type": "object",
+      "title": "Error_400_remove_messages",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Conversation not found or not allowed to remove messages, 1 => Messages not found or not allowed to remove messages for self."
+    },
+    "Error_400_delete_conversation_locally": {
+      "type": "object",
+      "title": "Error_400_delete_conversation_locally",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "Conversation not found or not allowed to delete conversation locally."
+    },
+    "Error_400_clear_conversation": {
+      "type": "object",
+      "title": "Error_400_clear_conversation",
+      "required": [
+        "errorCode",
+        "error"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "description": "0"
+        },
+        "error": {
+          "type": "string",
+          "description": "The message of the error raised."
+        }
+      },
+      "description": "errorCode- 0 => Conversation not found or not allowed to clear conversation, 1 => Messages not found or not allowed to clear conversation(already cleared)."
+    }
+  }
+}

@@ -1,0 +1,282 @@
+/**
+ * Shared styles for the Chat API documentation portal (homepage + Swagger pages).
+ *
+ * Reuse: import from both /index.html (`docs/css/portal.css`) and /docs/*.html (`./css/portal.css`).
+ */
+
+:root {
+  --bg-deep: #0b0f14;
+  --bg-panel: #121822;
+  --bg-panel-hover: #18202e;
+  --border: rgba(148, 163, 184, 0.18);
+  --text-primary: #e8eef7;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-dim: rgba(56, 189, 248, 0.15);
+  --success: #4ade80;
+  --danger: #f87171;
+  --radius: 12px;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.portal-body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(56, 189, 248, 0.12), transparent),
+    radial-gradient(900px 500px at 90% 0%, rgba(74, 222, 128, 0.08), transparent), var(--bg-deep);
+}
+
+body.docs-body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--bg-deep);
+}
+
+/* --- Homepage hero --- */
+
+.portal-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 48px) clamp(20px, 4vw, 32px);
+}
+
+.portal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.portal-hero-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 18px 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.portal-hero-sub {
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  max-width: 52ch;
+}
+
+/* --- Homepage search --- */
+
+.toolbar {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.toolbar input[type="search"] {
+  flex: 1;
+  min-width: 240px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  font-size: 15px;
+  outline: none;
+}
+
+.toolbar input[type="search"]::placeholder {
+  color: var(--text-muted);
+}
+
+.toolbar input[type="search"]:focus {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+}
+
+.toolbar-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* --- Card grid --- */
+
+.card-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 32px) clamp(40px, 6vw, 64px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.api-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+}
+
+.api-card:hover,
+.api-card:focus-visible {
+  background: var(--bg-panel-hover);
+  border-color: rgba(56, 189, 248, 0.45);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.api-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(74, 222, 128, 0.12));
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.api-card__title {
+  font-size: 1.12rem;
+  font-weight: 650;
+  margin: 0 0 6px;
+}
+
+.api-card__spec-title {
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  margin: 0 0 10px;
+  word-break: break-word;
+}
+
+.api-card__desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.api-card__cta {
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.api-card[hidden] {
+  display: none !important;
+}
+
+.portal-footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 32px) 32px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.portal-footer a {
+  color: var(--accent);
+}
+
+/* --- Swagger doc pages --- */
+
+.docs-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-panel);
+  padding: 16px clamp(20px, 4vw, 32px);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.docs-header__title {
+  margin: 0;
+  font-size: clamp(22px, 3vw, 28px);
+  letter-spacing: -0.02em;
+}
+
+.docs-header__subtitle {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.docs-main #swagger-ui {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px clamp(12px, 3vw, 24px) 40px;
+}
+
+/* Swagger UI on dark chrome (content area stays readable) */
+
+.swagger-ui .topbar {
+  display: none;
+}
+
+.docs-body .swagger-ui {
+  filter: none;
+}
+
+/* --- Noscript fallback --- */
+
+.noscript-banner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px clamp(20px, 4vw, 32px);
+  font-size: 14px;
+  color: var(--danger);
+}
+
+@media (max-width: 520px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .toolbar-meta {
+    text-align: right;
+    width: 100%;
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Chat API developer portal — browse OpenAPI modules (users, messages, broadcasters, channels, auth, and more) with Swagger UI on GitHub Pages." />
+  <title>Chat API · Developer portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./docs/css/portal.css" />
+</head>
+
+<body class="portal-body">
+  <!--
+    Homepage for static GitHub Pages hosting.
+    API cards load from `./apis/catalog.json` (built by scripts/build-api-portal.py).
+    Repo layout: `/index.html` → portal, `/docs/*.html` → Swagger UI, `/apis/*.json` → specs.
+  -->
+  <header class="portal-header">
+    <span class="portal-badge">OpenAPI · Realtime Chat</span>
+    <h1 class="portal-hero-title">API documentation portal</h1>
+    <p class="portal-hero-sub">
+      Phoenix / Elixir chat backend — explore each module in isolation. All pages are static; Swagger UI is loaded from a CDN and reads specs from <code
+        style="font-size:0.95em">/apis/</code>.
+    </p>
+
+    <form class="toolbar" role="search" aria-label="Filter API modules" onsubmit="return false">
+      <input id="api-filter" type="search" name="q" placeholder="Filter modules (e.g. messages, auth, channels…)"
+        autocomplete="off" />
+      <span class="toolbar-meta" data-role="filter-meta" aria-live="polite"></span>
+    </form>
+  </header>
+
+  <noscript>
+    <p class="noscript-banner">
+      JavaScript is off — open a module directly:
+      <a href="./docs/users.html">Users</a> ·
+      <a href="./docs/messages.html">Messages</a> ·
+      <a href="./docs/broadcasters.html">Broadcasters</a> ·
+      <a href="./docs/channels.html">Channels</a> ·
+      <a href="./docs/auth.html">Auth</a> ·
+      <a href="./docs/cleanup.html">Cleanup</a> ·
+      <a href="./docs/delivery-status.html">Delivery status</a> ·
+      <a href="./docs/unread-messages.html">Unread messages</a>
+    </p>
+  </noscript>
+
+  <section id="api-cards" class="card-grid" aria-label="API modules">
+    <!-- Populated by docs/js/home.js from apis/catalog.json -->
+  </section>
+
+  <footer class="portal-footer">
+    <p>
+      Spec JSON is generated without editing the Phoenix export bundles — see <code>scripts/build-api-portal.py</code>.
+      After changing <code>**/swagger-ui-init.js</code>, re-run that script before publishing.
+    </p>
+    <p>
+      <a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> (CDN) ·
+      <a href="./apis/catalog.json">Machine-readable catalog</a>
+    </p>
+  </footer>
+
+  <script src="./docs/js/home.js" defer></script>
+</body>
+
+</html>

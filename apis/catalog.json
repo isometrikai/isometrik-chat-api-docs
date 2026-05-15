@@ -1,0 +1,76 @@
+{
+  "apis": [
+    {
+      "id": "users",
+      "title": "Users",
+      "specTitle": "ChatUsersWeb",
+      "description": "Publish and manage realtime messages to users.",
+      "file": "users.json",
+      "source": "chat-users/swagger-ui-init.js",
+      "docPage": "docs/users.html"
+    },
+    {
+      "id": "messages",
+      "title": "Messages",
+      "specTitle": "ChatMessagesWeb",
+      "description": "Chat message APIs (send, history, delivery helpers).",
+      "file": "messages.json",
+      "source": "chat-messages/swagger-ui-init.js",
+      "docPage": "docs/messages.html"
+    },
+    {
+      "id": "broadcasters",
+      "title": "Broadcasters",
+      "specTitle": "BroadcastForwardWeb",
+      "description": "Broadcast / forward message flows.",
+      "file": "broadcasters.json",
+      "source": "broadcast-forward/swagger-ui-init.js",
+      "docPage": "docs/broadcasters.html"
+    },
+    {
+      "id": "channels",
+      "title": "Channels",
+      "specTitle": "ConversationWeb",
+      "description": "Conversations, members, and channel-style resources.",
+      "file": "channels.json",
+      "source": "conversations/swagger-ui-init.js",
+      "docPage": "docs/channels.html"
+    },
+    {
+      "id": "auth",
+      "title": "Auth & membership",
+      "specTitle": "MembershipcontrolWeb",
+      "description": "Membership and access control for chat participants.",
+      "file": "auth.json",
+      "source": "membership-control/swagger-ui-init.js",
+      "docPage": "docs/auth.html"
+    },
+    {
+      "id": "cleanup",
+      "title": "Cleanup",
+      "specTitle": "CleanupWeb",
+      "description": "Cleanup-related maintenance endpoints.",
+      "file": "cleanup.json",
+      "source": "cleanup/swagger-ui-init.js",
+      "docPage": "docs/cleanup.html"
+    },
+    {
+      "id": "delivery-status",
+      "title": "Delivery status",
+      "specTitle": "DeliverystatusWeb",
+      "description": "Message delivery state and tracking.",
+      "file": "delivery-status.json",
+      "source": "delivery-status/swagger-ui-init.js",
+      "docPage": "docs/delivery-status.html"
+    },
+    {
+      "id": "unread-messages",
+      "title": "Unread messages",
+      "specTitle": "UnreadmessagesWeb",
+      "description": "Unread counts and related message queries.",
+      "file": "unread-messages.json",
+      "source": "unread-messages/swagger-ui-init.js",
+      "docPage": "docs/unread-messages.html"
+    }
+  ]
+}

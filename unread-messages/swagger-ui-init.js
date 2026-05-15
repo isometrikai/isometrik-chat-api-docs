@@ -1,0 +1,1280 @@
+window.onload = function() {
+  // Build a system
+  var url = window.location.search.match(/url=([^&]+)/);
+  if (url && url.length > 1) {
+    url = decodeURIComponent(url[1]);
+  } else {
+    url = window.location.origin;
+  }
+  var options = {
+  "swaggerDoc": {
+      "swagger": "2.0",
+      "paths": {
+        "/chat/messages/unread/count": {
+          "get": {
+            "tags": [
+              "MessageUnread"
+            ],
+            "summary": "Get unread messages in conversation count.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_fetch_unread_messages_conversation_count"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_unread_messages"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_fetch_unread_messages_conversation_count"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/fetch_unread_messages_conversation_count"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for fetching unread messages in conversation count in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user whose unread messages count in a conversation to be fetched."
+              },
+              {
+                "x-example": "5d2c6a9621a38e07daaee965",
+                "type": "string",
+                "required": true,
+                "name": "converationId",
+                "in": "query",
+                "description": "Id of the conversation whose unread messages count are to be fetched."
+              }
+            ],
+            "operationId": "Isometrik.UnreadmessagesWeb.MessageUnreadController.fetch_unread_messages_conversation_count",
+            "description": "Get unread messages in conversation count in a project in an account."
+          }
+        },
+        "/chat/messages/unread": {
+          "get": {
+            "tags": [
+              "MessageUnread"
+            ],
+            "summary": "Get unread messages in conversation.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_fetch_unread_messages_conversation"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_fetch_unread_messages_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_fetch_unread_messages_conversation"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/fetch_unread_messages_conversation"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for fetching unread messages in a conversation in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is fetching unread messages in a conversation."
+              },
+              {
+                "x-example": "5d2c6a9621a38e07daaee965",
+                "type": "string",
+                "required": true,
+                "name": "converationId",
+                "in": "query",
+                "description": "Id of the conversation whose unread messages are to be fetched."
+              },
+              {
+                "x-example": 10,
+                "type": "integer",
+                "required": false,
+                "name": "limit",
+                "in": "query",
+                "description": "Number of messages to be fetched.Allowed values are [1,20]",
+                "default": 20
+              },
+              {
+                "x-example": 10,
+                "type": "integer",
+                "required": false,
+                "name": "skip",
+                "in": "query",
+                "description": "Number of messages to be skipped before fetching messages(used for paging).",
+                "default": 0
+              },
+              {
+                "x-example": -1,
+                "type": "integer",
+                "required": false,
+                "name": "sort",
+                "in": "query",
+                "description": "Specifies the sorting criteria for the returned results.Allowed values are 1 and -1.Default is descending order, -1",
+                "default": -1
+              }
+            ],
+            "operationId": "Isometrik.UnreadmessagesWeb.MessageUnreadController.fetch_unread_messages_conversation",
+            "description": "Get unread messages in conversation in a project in an account."
+          }
+        },
+        "/chat/messages/read": {
+          "put": {
+            "tags": [
+              "MessageUnread"
+            ],
+            "summary": "Mark messages sent before a timestamp as read in a conversation.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_mark_messages_as_read"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_mark_messages_as_read"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_mark_messages_as_read"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/mark_messages_as_read"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used to mark messages sent before a timestamp as read in a conversation in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is marking the messages sent before a timestamp as read."
+              },
+              {
+                "schema": {
+                  "$ref": "#/definitions/body_mark_messages_as_read"
+                },
+                "required": true,
+                "name": "body",
+                "in": "body",
+                "description": "Body parameters for marking messages sent before a timestamp as read in a conversation."
+              }
+            ],
+            "operationId": "Isometrik.UnreadmessagesWeb.MessageUnreadController.mark_messages_as_read",
+            "description": "Mark messages sent before a timestamp as read in a conversation in a project in an account."
+          }
+        },
+        "/chat/conversations/unread/count": {
+          "get": {
+            "tags": [
+              "MessageUnread"
+            ],
+            "summary": "Get unread conversations count.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_fetch_unread_conversations_count"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_unread_messages"
+                },
+                "description": "Forbidden"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/fetch_unread_conversations_count"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for fetching unread conversations count in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user whose unread conversations count are to be fetched."
+              }
+            ],
+            "operationId": "Isometrik.UnreadmessagesWeb.MessageUnreadController.fetch_unread_conversations_count",
+            "description": "Get unread conversations count in a project in an account."
+          }
+        }
+      },
+      "info": {
+        "version": "1.0",
+        "title": "UnreadmessagesWeb"
+      },
+      "definitions": {
+        "mark_messages_as_read": {
+          "type": "object",
+          "title": "Response of mark messages sent before a timestamp as read in conversation request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of successfully marking messages sent before a timestamp as read in conversation."
+            }
+          },
+          "example": {
+            "msg": "Messages marked as read successfully."
+          },
+          "description": "Successfully marked messages sent before a timestamp as read in conversation."
+        },
+        "fetch_unread_messages_conversation_count": {
+          "type": "object",
+          "title": "Response of fetch unread messages count in conversation request",
+          "required": [
+            "count",
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of unread messages count in conversation being fetched successfully."
+            },
+            "count": {
+              "type": "integer",
+              "description": "Number of unread messages in conversation."
+            }
+          },
+          "example": {
+            "msg": "Unread messages count in conversation fetched successfully.",
+            "count": 2
+          },
+          "description": "Unread messages count in conversation fetched successfully."
+        },
+        "fetch_unread_messages_conversation": {
+          "type": "object",
+          "title": "Response of fetch unread messages in conversation request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of unread messages in conversation being fetched successfully."
+            },
+            "messages": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "example": {
+            "msg": "Unread messages in conversation fetched succesfully.",
+            "messages": [
+              {
+                "updatedAt": 1611845768666,
+                "showInConversation": true,
+                "sentAt": 1611845768666,
+                "senderInfo": {
+                  "userProfileImageUrl": "https://trace.isometrik.io/public1/img/grafana_icon.svg",
+                  "userName": "koko112",
+                  "userIdentifier": "jojo19@lolo.com",
+                  "userId": "5fb3c35f21a38ed228edd90e",
+                  "online": false,
+                  "metaData": {},
+                  "lastSeen": -1
+                },
+                "readBy": [
+                  {
+                    "userId": "5fb3daec21a38e73938a8d5b",
+                    "timestamp": 1611927387458
+                  },
+                  {
+                    "userId": "5fb4feb921a38e7b81fac663",
+                    "timestamp": 1611927524069
+                  }
+                ],
+                "reactions": {
+                  "yes": [
+                    "5fb3c35f21a38ed228edd90e"
+                  ],
+                  "no": [
+                    "5fb3c35f21a38ed228edd90e"
+                  ]
+                },
+                "metaData": {
+                  "type": "Test Message"
+                },
+                "messageType": 0,
+                "messageId": "6012d08821a38e18be4d90ed",
+                "events": {
+                  "updateUnreadCount": false,
+                  "sendPushNotification": true
+                },
+                "encrypted": true,
+                "deliveryReadEventsEnabled": false,
+                "deliveredTo": [
+                  {
+                    "userId": "5fb3daec21a38e73938a8d5b",
+                    "timestamp": 1611927387458
+                  },
+                  {
+                    "userId": "5fb4feb921a38e7b81fac663",
+                    "timestamp": 1611927524069
+                  }
+                ],
+                "customType": "custom message type",
+                "conversationId": "5ffdb03c21a38e01364f3495",
+                "body": "message body",
+                "attachments": [
+                  {
+                    "thumbnailUrl": "https://sample-file-url/media/1576213941566-unnamed-thumbnail.png",
+                    "size": 95860,
+                    "name": "unnamed.jpg",
+                    "mimeType": "image/jpeg",
+                    "mediaUrl": "https://sample-file-url/1576213941566-unnamed.jpg",
+                    "mediaId": "5df31dba3a22d30037d62066",
+                    "extension": "jpg",
+                    "attachmentType": 0
+                  }
+                ]
+              },
+              {
+                "sentAt": "Epoch time at which admin was made.",
+                "memberProfileImageUrl": "Url of the profile pic of the user who was made admin.",
+                "memberName": "Name of the user who was made admin.",
+                "memberIdentifier": "Identifier of the user who was made admin.",
+                "memberId": "Id of the user who was made admin",
+                "initiatorProfileImageUrl": "Url of the profile pic of the user who made admin.",
+                "initiatorName": "Name of the user who made admin.",
+                "initiatorIdentifier": "Identifier of the user who made admin.",
+                "initiatorId": "Id of the user who made admin.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation for which admin was added.",
+                "action": "addAdmin"
+              },
+              {
+                "sentAt": "Epoch time at which admin was removed.",
+                "memberProfileImageUrl": "Url of the profile pic of the user who was removed as admin.",
+                "memberName": "Name of the user who was removed as admin.",
+                "memberIdentifier": "Identifier of the user who was removed as admin.",
+                "memberId": "Id of the user who was removed as admin",
+                "initiatorProfileImageUrl": "Url of the profile pic of the user who removed admin.",
+                "initiatorName": "Name of the user who removed admin.",
+                "initiatorIdentifier": "Identifier of the user who removed admin.",
+                "initiatorId": "Id of the user who removed admin.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation for which admin was removed.",
+                "action": "removeAdmin"
+              },
+              {
+                "userId": "Id of the user who deleted the conversation locally.",
+                "sentAt": "Epoch time at which conversation was deleted locally.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation which was deleted locally.",
+                "action": "deleteConversationLocally"
+              },
+              {
+                "userId": "Id of the user who cleared the conversation.",
+                "sentAt": "Epoch time at which conversation was cleared.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation which was cleared.",
+                "action": "clearConversation"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who joined.",
+                "userName": "Name of the user who joined.",
+                "userIdentifier": "Identifier of the user who joined.",
+                "userId": "Id of the user who joined.",
+                "sentAt": "Epoch time at which user joined.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation where user joined as member.",
+                "action": "memberJoin"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who left.",
+                "userName": "Name of the user who left.",
+                "userIdentifier": "Identifier of the user who left.",
+                "userId": "Id of the user who left.",
+                "sentAt": "Epoch time at which user left.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation where user who left as member.",
+                "action": "memberLeave"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who added members.",
+                "userName": "Name of the user who added members.",
+                "userIdentifier": "Identifier of the user who added members.",
+                "userId": "Id of the user who added members.",
+                "sentAt": "Epoch time at which members were added.",
+                "members": "List of members added to conversation.",
+                "conversationStatusMessage": true,
+                "conversationId": "Conversation to which members were added.",
+                "action": "membersAdd"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who removed members.",
+                "userName": "Name of the user who removed members.",
+                "userIdentifier": "Identifier of the user who removed members.",
+                "userId": "Id of the user who removed members.",
+                "sentAt": "Epoch time at which members were removed.",
+                "members": "List of members removed from conversation.",
+                "conversationStatusMessage": true,
+                "conversationId": "Conversation from which members were removed.",
+                "action": "membersRemove"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who updated config.",
+                "userName": "Name of the user who updated settings.",
+                "userIdentifier": "Identifier of the user who updated settings.",
+                "userId": "Id of the user who updated settings.",
+                "sentAt": "Epoch time at which settings was updated.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation whose settings were updated.",
+                "config": "Updated settings of conversation",
+                "action": "conversationSettingsUpdated"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who updated conversation image.",
+                "userName": "Name of the user who updated conversation image.",
+                "userIdentifier": "Identifier of the user who updated conversation image.",
+                "userId": "Id of the user who updated conversation image.",
+                "sentAt": "Epoch time at which conversation image was updated.",
+                "conversationStatusMessage": true,
+                "conversationImageUrl": "Url of the updated image of conversation",
+                "conversationId": "Id of the conversation whose image were updated.",
+                "action": "conversationImageUpdated"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who updated conversation title.",
+                "userName": "Name of the user who updated conversation title.",
+                "userIdentifier": "Identifier of the user who updated conversation title.",
+                "userId": "Id of the user who updated conversation title.",
+                "sentAt": "Epoch time at which conversation title was updated.",
+                "conversationTitle": "Updated title of conversation",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation whose title were updated.",
+                "action": "conversationTitleUpdated"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who deleted messages locally.",
+                "userName": "Name of the user who deleted messages locally.",
+                "userIdentifier": "Identifier of the user who deleted messages locally.",
+                "userId": "Id of the user who deleted messages locally.",
+                "sentAt": "Epoch time at which messages were deleted locally.",
+                "messageIds": "List of the message ids that were deleted locally.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation containing the messages that were deleted locally.",
+                "action": "messagesDeleteLocal"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who deleted messages for everyone.",
+                "userName": "Name of the user who deleted messages for everyone.",
+                "userIdentifier": "Identifier of the user who deleted messages for everyone.",
+                "userId": "Id of the user who deleted messages for everyone.",
+                "sentAt": "Epoch time at which messages were deleted for everyone.",
+                "messageIds": "List of the message ids that were deleted for everyone.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation containing the messages that were deleted for everyone.",
+                "action": "messagesDeleteForAll"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who marked messages as read.",
+                "userName": "Name of the user who marked messages as read.",
+                "userIdentifier": "Identifier of the user who marked messages as read.",
+                "userId": "Id of the user who marked messages as read.",
+                "sentAt": "Epoch time at which messages were marked as read.",
+                "numberOfMessages": "Number of messages that were marked as read.",
+                "lastReadAt": "Epoch time upto which, messages sent were marked as read.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation containing the messages that were marked as read.",
+                "action": "multipleMessagesRead"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who added reaction.",
+                "userName": "Name of the user who added reaction.",
+                "userIdentifier": "Identifier of the user who added reaction.",
+                "userId": "Id of the user who added reaction.",
+                "sentAt": "Epoch time at which reaction was added.",
+                "reactionType": "Type of reaction that was added.",
+                "messageId": "Id of the message for which reaction was added.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation containing the message for which reaction was added.",
+                "action": "reactionAdd"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who removed reaction.",
+                "userName": "Name of the user who removed reaction.",
+                "userIdentifier": "Identifier of the user who removed reaction.",
+                "userId": "Id of the user who removed reaction.",
+                "sentAt": "Epoch time at which reaction was removed.",
+                "reactionType": "Type of reaction that was removed.",
+                "messageId": "Id of the message for which reaction was removed.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the conversation containing the message for which reaction was removed.",
+                "action": "reactionRemove"
+              },
+              {
+                "userProfileImageUrl": "Url of the profile pic of the user who created conversation.",
+                "userName": "Name of the user who created conversation.",
+                "userIdentifier": "Identifier of the user who created conversation.",
+                "userId": "Id of he user who created conversation.",
+                "sentAt": "Epoch time at which conversation was created.",
+                "conversationStatusMessage": true,
+                "conversationId": "Id of the newly created conversation.",
+                "conversationDetails": "Object containing details of newly created conversation.",
+                "action": "conversationCreated"
+              }
+            ]
+          },
+          "description": "Unread messages in conversation fetched successfully."
+        },
+        "fetch_unread_conversations_count": {
+          "type": "object",
+          "title": "Response of fetch unread conversations count request",
+          "required": [
+            "count",
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of unread conversations count being fetched successfully."
+            },
+            "count": {
+              "type": "integer",
+              "description": "Number of unread conversations."
+            }
+          },
+          "example": {
+            "msg": "Unread conversations count fetched successfully.",
+            "count": 2
+          },
+          "description": "Unread conversations count fetched successfully."
+        },
+        "body_mark_messages_as_read": {
+          "type": "object",
+          "title": "Body of the mark messages sent before a timestamp as read in conversation request",
+          "required": [
+            "conversationId"
+          ],
+          "properties": {
+            "timestamp": {
+              "type": "integer",
+              "description": "Timestamp before which messages sent are to be marked as read(If not specified, all messages sent before the current time are marked as read)."
+            },
+            "conversationId": {
+              "type": "string",
+              "description": "Id of the conversation containing messages sent before a timestamp to be marked as read."
+            }
+          },
+          "example": {
+            "timestamp": "6012b05021a38e18bed7d372",
+            "conversationId": "5fe0b8c921a38ec829956130"
+          },
+          "description": "Details of the mark messages sent before a timestamp as read in conversation request."
+        },
+        "User": {
+          "type": "object",
+          "title": "Message sender details",
+          "required": [
+            "metaData",
+            "lastSeen",
+            "online",
+            "userId",
+            "userIdentifier",
+            "userProfileImageUrl",
+            "userName"
+          ],
+          "properties": {
+            "userProfileImageUrl": {
+              "type": "string",
+              "description": "Profilepic associated with the message sender."
+            },
+            "userName": {
+              "type": "string",
+              "description": "Name associated with the message sender."
+            },
+            "userIdentifier": {
+              "type": "string",
+              "description": "Identifier associated with the message sender."
+            },
+            "userId": {
+              "type": "string",
+              "description": "Id associated with the message sender."
+            },
+            "online": {
+              "type": "boolean",
+              "description": "Whether message sender is online now."
+            },
+            "metaData": {
+              "type": "object",
+              "description": "Object containing metadata of the message sender, if any."
+            },
+            "lastSeen": {
+              "type": "integer",
+              "description": "Epoch time at which message sender was last seen online.Value is -1 incase user is online now"
+            }
+          },
+          "description": "Model containing details of the message sender."
+        },
+        "Messages": {
+          "type": "array",
+          "title": "Unread messages fetch",
+          "items": {
+            "$ref": "#/definitions/Message"
+          },
+          "description": "All unread messages list."
+        },
+        "Message": {
+          "type": "object",
+          "title": "Unread message details",
+          "required": [
+            "deliveryReadEventsEnabled",
+            "sentAt",
+            "messageId"
+          ],
+          "properties": {
+            "updatedAt": {
+              "type": "integer",
+              "description": "Epoch time at which message was last updated at."
+            },
+            "showInConversation": {
+              "type": "boolean",
+              "description": "Whether the message needs to be show in conversation."
+            },
+            "sentAt": {
+              "type": "integer",
+              "description": "Epoch time at which message was sent at."
+            },
+            "senderInfo": {
+              "$ref": "#/definitions/User"
+            },
+            "senderId": {
+              "type": "string",
+              "description": "Id of the user who sent message."
+            },
+            "readBy": {
+              "$ref": "#/definitions/DeliveryReadDetails"
+            },
+            "reactions": {
+              "type": "object",
+              "description": "Object containing info of rections added for the message."
+            },
+            "parentMessageId": {
+              "type": "string",
+              "description": "Id of the message for which to send reply(Mandatory for reply messages)."
+            },
+            "metaData": {
+              "type": "object",
+              "description": "Additional information of the message that you can save like tags etc, if any."
+            },
+            "messageType": {
+              "type": "integer",
+              "description": "Type of message-possible values are 0(normal)/1(forwarded)."
+            },
+            "messageId": {
+              "type": "string",
+              "description": "Id of the message fetched."
+            },
+            "mentionedUsers": {
+              "$ref": "#/definitions/MentionedUsers"
+            },
+            "events": {
+              "$ref": "#/definitions/Events"
+            },
+            "encrypted": {
+              "type": "boolean",
+              "description": "Whether the message is encrypted."
+            },
+            "deliveryReadEventsEnabled": {
+              "type": "boolean",
+              "description": "Whether message delivery/read events are enabled or not for conversation."
+            },
+            "deliveredTo": {
+              "$ref": "#/definitions/DeliveryReadDetails"
+            },
+            "customType": {
+              "type": "string",
+              "description": "Custom message type, if any."
+            },
+            "conversationId": {
+              "type": "string",
+              "description": "Id of the conversation in which message was sent."
+            },
+            "body": {
+              "type": "string",
+              "description": "Body of the message fetched."
+            },
+            "attachments": {
+              "$ref": "#/definitions/Attachments"
+            }
+          },
+          "description": "Model containing details of the unread message fetched."
+        },
+        "MentionedUsers": {
+          "type": "array",
+          "title": "Mentioned users",
+          "items": {
+            "$ref": "#/definitions/MentionedUser"
+          },
+          "description": "All mentioned users for a message."
+        },
+        "MentionedUser": {
+          "type": "object",
+          "title": "Mentioned user details",
+          "required": [
+            "metaData",
+            "lastSeen",
+            "online",
+            "userIdentifier",
+            "userProfileImageUrl",
+            "userName",
+            "userId",
+            "wordCount",
+            "order"
+          ],
+          "properties": {
+            "wordCount": {
+              "type": "integer",
+              "description": "Mentioned user's name word count."
+            },
+            "userProfileImageUrl": {
+              "type": "string",
+              "description": "Profilepic associated with the mentioned user."
+            },
+            "userName": {
+              "type": "string",
+              "description": "Name associated with the mentioned user."
+            },
+            "userIdentifier": {
+              "type": "string",
+              "description": "Identifier associated with the mentioned user."
+            },
+            "userId": {
+              "type": "string",
+              "description": "User ID of mentioned user."
+            },
+            "order": {
+              "type": "integer",
+              "description": "Mention user's order in the message in reference to another mentioned user."
+            },
+            "online": {
+              "type": "boolean",
+              "description": "Whether mentioned user is online now."
+            },
+            "metaData": {
+              "type": "object",
+              "description": "Object containing metadata of the mentioned user, if any."
+            },
+            "lastSeen": {
+              "type": "integer",
+              "description": "Epoch time at which mentioned user was last seen online.Value is -1 incase user is online now"
+            }
+          },
+          "description": "Model containing details of the mentioned user."
+        },
+        "Events": {
+          "type": "object",
+          "title": "Message events details",
+          "required": [
+            "updateUnreadCount",
+            "sendPushNotification"
+          ],
+          "properties": {
+            "updateUnreadCount": {
+              "type": "boolean",
+              "description": "Whether to update unread messages count."
+            },
+            "sendPushNotification": {
+              "type": "boolean",
+              "description": "Whether to send push notification."
+            }
+          },
+          "description": "Model containing details of the message events."
+        },
+        "Error_503": {
+          "type": "object",
+          "title": "Error_503",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Service Unavailable."
+        },
+        "Error_422": {
+          "type": "object",
+          "title": "Error_422",
+          "properties": {
+            "error": {
+              "type": "object",
+              "required": [
+                "error_key"
+              ],
+              "properties": {
+                "error_key": {
+                  "type": "array",
+                  "example": [
+                    "The message of the first error raised.",
+                    "The message of the second error raised."
+                  ],
+                  "description": "Array containing list of error messages."
+                }
+              }
+            }
+          },
+          "description": "Unprocessable entity."
+        },
+        "Error_404_mark_messages_as_read": {
+          "type": "object",
+          "title": "Error_404_mark_messages_as_read",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found."
+        },
+        "Error_404_fetch_unread_messages_conversation_count": {
+          "type": "object",
+          "title": "Error_404_fetch_unread_messages_conversation_count",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found, 1 => Unread messages not found."
+        },
+        "Error_404_fetch_unread_messages_conversation": {
+          "type": "object",
+          "title": "Error_404_fetch_unread_messages_conversation",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found, 1 => Unread messages not found."
+        },
+        "Error_404_fetch_unread_conversations_count": {
+          "type": "object",
+          "title": "Error_404_fetch_unread_conversations_count",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found, 1 => Unread conversations not found."
+        },
+        "Error_403_unread_messages": {
+          "type": "object",
+          "title": "Error_403_unread_messages",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "11"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+        },
+        "Error_403_mark_messages_as_read": {
+          "type": "object",
+          "title": "Error_403_mark_messages_as_read",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Allowed messages limit shall be exceeded, 2 => Read events disabled for conversation, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+        },
+        "Error_403_fetch_unread_messages_conversation": {
+          "type": "object",
+          "title": "Error_403_fetch_unread_messages_conversation",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Allowed messages limit shall be exceeded, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+        },
+        "Error_400_mark_messages_as_read": {
+          "type": "object",
+          "title": "Error_400_mark_messages_as_read",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Conversation not found or not allowed to mark messages as read."
+        },
+        "Error_400_fetch_unread_messages_conversation_count": {
+          "type": "object",
+          "title": "Error_400_fetch_unread_messages_conversation_count",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Conversation not found or not allowed to fetch unread messages count."
+        },
+        "Error_400_fetch_unread_messages_conversation": {
+          "type": "object",
+          "title": "Error_400_fetch_unread_messages_conversation",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Conversation not found or not allowed to fetch unread messages."
+        },
+        "DeliveryReadDetails": {
+          "type": "array",
+          "title": "Message delivery/read details",
+          "items": {
+            "$ref": "#/definitions/DeliveryReadDetail"
+          },
+          "description": "All delivery/read details to/by users for a message."
+        },
+        "DeliveryReadDetail": {
+          "type": "object",
+          "title": "Message delivery/read status details",
+          "required": [
+            "timestamp",
+            "userId"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "description": "Id of the user to/by whom message was delivers/read."
+            },
+            "timestamp": {
+              "type": "string",
+              "description": "Epoch time at which message was delivered/read to/by user."
+            }
+          },
+          "description": "Model containing details of the message delivery/read."
+        },
+        "Attachments": {
+          "type": "array",
+          "title": "Message attachments",
+          "items": {
+            "$ref": "#/definitions/Attachment"
+          },
+          "description": "All attachments for a message."
+        },
+        "Attachment": {
+          "type": "object",
+          "title": "Attachment details",
+          "required": [
+            "thumbnailUrl",
+            "size",
+            "attachmentType",
+            "extension",
+            "mimeType",
+            "name",
+            "mediaUrl",
+            "mediaId"
+          ],
+          "properties": {
+            "thumbnailUrl": {
+              "type": "string",
+              "description": "Thumbnail url of the media attachment, if any."
+            },
+            "size": {
+              "type": "integer",
+              "description": "Size of the media in bytes"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the media(with extension appended)."
+            },
+            "mimeType": {
+              "type": "string",
+              "description": "Mime type of the media."
+            },
+            "mediaUrl": {
+              "type": "string",
+              "description": "Url of the media attachment."
+            },
+            "mediaId": {
+              "type": "string",
+              "description": "Unique identifier of the attachment media."
+            },
+            "extension": {
+              "type": "boolean",
+              "description": "Whether user is online now."
+            },
+            "attachmentType": {
+              "type": "integer",
+              "description": "Media attachment type.Supported value 0-8, where 8 is for custom type and is not added in default UI of sdk."
+            }
+          },
+          "description": "Model containing details of the attachment."
+        }
+      }
+    }
+,
+  "customOptions": {}
+};
+  url = options.swaggerUrl || url
+  var urls = options.swaggerUrls
+  var customOptions = options.customOptions
+  var spec1 = options.swaggerDoc
+  var swaggerOptions = {
+    spec: spec1,
+    url: url,
+    urls: urls,
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout"
+  }
+  for (var attrname in customOptions) {
+    swaggerOptions[attrname] = customOptions[attrname];
+  }
+  var ui = SwaggerUIBundle(swaggerOptions)
+
+  if (customOptions.oauth) {
+    ui.initOAuth(customOptions.oauth)
+  }
+
+  if (customOptions.authAction) {
+    ui.authActions.authorize(customOptions.authAction)
+  }
+
+  window.ui = ui
+}

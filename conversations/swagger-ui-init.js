@@ -1,0 +1,2406 @@
+
+window.onload = function() {
+  // Build a system
+  var url = window.location.search.match(/url=([^&]+)/);
+  if (url && url.length > 1) {
+    url = decodeURIComponent(url[1]);
+  } else {
+    url = window.location.origin;
+  }
+  var options = {
+  "swaggerDoc": {
+      "swagger": "2.0",
+      "paths": {
+        "/chat/conversations/watchers": {
+          "get": {
+            "tags": [
+              "Conversation"
+            ],
+            "summary": "Get conversation watchers.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_get_conversation_watchers"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_get_conversation_watchers"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/get_conversation_watchers"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for fetching conversation watchers in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is member of conversation whose watchers are to be fetched."
+              },
+              {
+                "x-example": "5fbe69d021a38e18d2240b46",
+                "type": "string",
+                "required": true,
+                "name": "conversationId",
+                "in": "query",
+                "description": "Id of the conversation whose watchers are to be fetched."
+              },
+              {
+                "x-example": 10,
+                "type": "integer",
+                "required": false,
+                "name": "limit",
+                "in": "query",
+                "description": "Number of watchers to be fetched.Allowed values are [1,20]",
+                "default": 20
+              },
+              {
+                "x-example": 10,
+                "type": "integer",
+                "required": false,
+                "name": "skip",
+                "in": "query",
+                "description": "Number of watchers to be skipped before fetching watchers(used for paging).",
+                "default": 0
+              },
+              {
+                "x-example": "User name",
+                "type": "string",
+                "required": false,
+                "name": "searchTag",
+                "in": "query",
+                "description": "Specifies a search tag to filter the conversation watchers."
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationController.get_conversation_watchers",
+            "description": "Get conversation watchers(members who are online) in a project in an account."
+          }
+        },
+        "/chat/conversations/public": {
+          "get": {
+            "tags": [
+              "Conversation"
+            ],
+            "summary": "Get public conversations in which user is not a member.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_get_conversations"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/get_conversations"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for fetching public conversations in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user to identify public conversations of which user is not member already."
+              },
+              {
+                "x-example": "5d2c6a9621a38e07daaee965,5fe0b8c921a38ec829956130",
+                "type": "string",
+                "required": false,
+                "name": "ids",
+                "in": "query",
+                "description": "Specifies a comma-separated string of conversation IDs to retrieve."
+              },
+              {
+                "x-example": "Secret type",
+                "type": "string",
+                "required": false,
+                "name": "customType",
+                "in": "query",
+                "description": "Specifies a string of custom type to filter the conversations."
+              },
+              {
+                "x-example": "Product name",
+                "type": "string",
+                "required": false,
+                "name": "searchTag",
+                "in": "query",
+                "description": "Specifies a search tag to filter the conversations."
+              },
+              {
+                "x-example": "5fb3daec21a38e73938a8d5b,5fb4feb921a38e7b81fac663",
+                "type": "string",
+                "required": false,
+                "name": "membersIncluded",
+                "in": "query",
+                "description": "Specifies a comma-separated string of one or more user IDs to restrict search scope."
+              },
+              {
+                "x-example": "5fb3daec21a38e73938a8d5b,5fb4feb921a38e7b81fac663",
+                "type": "string",
+                "required": false,
+                "name": "membersExactly",
+                "in": "query",
+                "description": "Searches for conversations with the specified members exactly in. The string should contain comma-separated multiple user IDs."
+              },
+              {
+                "x-example": -1,
+                "type": "integer",
+                "required": false,
+                "name": "sort",
+                "in": "query",
+                "description": "Specifies the sorting criteria for the returned results.Allowed values are 1 and -1.Default is descending order, -1",
+                "default": -1
+              },
+              {
+                "x-example": 0,
+                "type": "integer",
+                "required": false,
+                "name": "skip",
+                "in": "query",
+                "description": "Specifies the number of results you want to skip from the beginning. (Useful in Pagination).",
+                "default": 0
+              },
+              {
+                "x-example": 20,
+                "type": "integer",
+                "required": false,
+                "name": "limit",
+                "in": "query",
+                "description": "Specifies the number of results to return.",
+                "default": 20
+              },
+              {
+                "x-example": true,
+                "type": "boolean",
+                "required": false,
+                "name": "includeMembers",
+                "in": "query",
+                "description": "Whether to include member details for the conversation.",
+                "default": false
+              },
+              {
+                "x-example": 0,
+                "type": "integer",
+                "required": false,
+                "name": "membersSkip",
+                "in": "query",
+                "description": "Specifies the number of members you want to skip from the beginning.Used only if includeMembers is true. (Useful in Pagination).",
+                "default": 0
+              },
+              {
+                "x-example": 20,
+                "type": "integer",
+                "required": false,
+                "name": "membersLimit",
+                "in": "query",
+                "description": "Specifies the number of members to return.Used only if includeMembers is true.",
+                "default": 20
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationController.get_public_conversations",
+            "description": "Get public conversations in which user is not a member in a project in an account."
+          }
+        },
+        "/chat/conversations/details/{conversationId}": {
+          "get": {
+            "tags": [
+              "Conversation"
+            ],
+            "summary": "Get conversation details.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_get_conversation_details"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_get_conversation_details"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/get_conversation_details"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for fetching conversation details in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is member of conversation whose details are to be fetched."
+              },
+              {
+                "x-example": "5fbe69d021a38e18d2240b46",
+                "type": "string",
+                "required": true,
+                "name": "conversationId",
+                "in": "query",
+                "description": "Id of the conversation whose details are to be fetched."
+              },
+              {
+                "x-example": true,
+                "type": "boolean",
+                "required": false,
+                "name": "includeMembers",
+                "in": "query",
+                "description": "Whether to include conversation's member's details.",
+                "default": false
+              },
+              {
+                "x-example": 0,
+                "type": "integer",
+                "required": false,
+                "name": "membersSkip",
+                "in": "query",
+                "description": "Specifies the number of members you want to skip from the beginning.Used only if includeMembers is true. (Useful in Pagination).",
+                "default": 0
+              },
+              {
+                "x-example": 20,
+                "type": "integer",
+                "required": false,
+                "name": "membersLimit",
+                "in": "query",
+                "description": "Specifies the number of members to return.Used only if includeMembers is true.",
+                "default": 20
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationController.get_conversation_details",
+            "description": "Get conversation details in a project in an account."
+          }
+        },
+        "/chat/conversations/count": {
+          "get": {
+            "tags": [
+              "Conversation"
+            ],
+            "summary": "Get conversations count.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_get_conversations_count"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/get_conversations_count"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for fetching conversations count in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user whose conversations count are to be fetched."
+              },
+              {
+                "x-example": "5d2c6a9621a38e07daaee965,5fe0b8c921a38ec829956130",
+                "type": "string",
+                "required": false,
+                "name": "ids",
+                "in": "query",
+                "description": "Specifies a comma-separated string of conversation IDs to retrieve."
+              },
+              {
+                "x-example": 0,
+                "type": "string",
+                "required": false,
+                "name": "conversationType",
+                "in": "integer",
+                "description": "Specifies the type of conversation. Allowed values are private, public and open(0,1 and 2). By default, all the conversations are retrieved."
+              },
+              {
+                "x-example": true,
+                "type": "boolean",
+                "required": false,
+                "name": "isGroup",
+                "in": "query",
+                "description": "Restricts the search scope to only retrieve private 1-to-1 or group conversations. Allowed values are true and false. By default, all the conversations are retrieved."
+              },
+              {
+                "x-example": "Secret type",
+                "type": "string",
+                "required": false,
+                "name": "customType",
+                "in": "query",
+                "description": "Specifies a string of custom type to filter the conversations."
+              },
+              {
+                "x-example": "Product name",
+                "type": "string",
+                "required": false,
+                "name": "searchTag",
+                "in": "query",
+                "description": "Specifies a search tag to filter the conversations."
+              },
+              {
+                "x-example": "5fb3daec21a38e73938a8d5b,5fb4feb921a38e7b81fac663",
+                "type": "string",
+                "required": false,
+                "name": "membersIncluded",
+                "in": "query",
+                "description": "Specifies a comma-separated string of one or more user IDs to restrict search scope."
+              },
+              {
+                "x-example": "5fb3daec21a38e73938a8d5b,5fb4feb921a38e7b81fac663",
+                "type": "string",
+                "required": false,
+                "name": "membersExactly",
+                "in": "query",
+                "description": "Searches for conversations with the specified members exactly in. The string should contain comma-separated multiple user IDs."
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationController.get_conversations_count",
+            "description": "Get conversations count in a project in an account."
+          }
+        },
+        "/chat/conversations": {
+          "get": {
+            "tags": [
+              "Conversation"
+            ],
+            "summary": "Get conversations.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_get_conversations"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/get_conversations"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for fetching conversations in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user whose conversations are to be fetched."
+              },
+              {
+                "x-example": "5d2c6a9621a38e07daaee965,5fe0b8c921a38ec829956130",
+                "type": "string",
+                "required": false,
+                "name": "ids",
+                "in": "query",
+                "description": "Specifies a comma-separated string of conversation IDs to retrieve."
+              },
+              {
+                "x-example": 0,
+                "type": "string",
+                "required": false,
+                "name": "conversationType",
+                "in": "integer",
+                "description": "Specifies the type of conversation. Allowed values are private, public and open(0,1 and 2). By default, all the conversations are retrieved."
+              },
+              {
+                "x-example": true,
+                "type": "boolean",
+                "required": false,
+                "name": "isGroup",
+                "in": "query",
+                "description": "Restricts the search scope to only retrieve private 1-to-1 or group conversations. Allowed values are true and false. By default, all the conversations are retrieved."
+              },
+              {
+                "x-example": "Secret type",
+                "type": "string",
+                "required": false,
+                "name": "customType",
+                "in": "query",
+                "description": "Specifies a string of custom type to filter the conversations."
+              },
+              {
+                "x-example": "Product name",
+                "type": "string",
+                "required": false,
+                "name": "searchTag",
+                "in": "query",
+                "description": "Specifies a search tag to filter the conversations."
+              },
+              {
+                "x-example": "5fb3daec21a38e73938a8d5b,5fb4feb921a38e7b81fac663",
+                "type": "string",
+                "required": false,
+                "name": "membersIncluded",
+                "in": "query",
+                "description": "Specifies a comma-separated string of one or more user IDs to restrict search scope."
+              },
+              {
+                "x-example": "5fb3daec21a38e73938a8d5b,5fb4feb921a38e7b81fac663",
+                "type": "string",
+                "required": false,
+                "name": "membersExactly",
+                "in": "query",
+                "description": "Searches for conversations with the specified members exactly in. The string should contain comma-separated multiple user IDs."
+              },
+              {
+                "x-example": -1,
+                "type": "integer",
+                "required": false,
+                "name": "sort",
+                "in": "query",
+                "description": "Specifies the sorting criteria for the returned results.Allowed values are 1 and -1.Default is descending order, -1",
+                "default": -1
+              },
+              {
+                "x-example": 0,
+                "type": "integer",
+                "required": false,
+                "name": "skip",
+                "in": "query",
+                "description": "Specifies the number of results you want to skip from the beginning. (Useful in Pagination).",
+                "default": 0
+              },
+              {
+                "x-example": 20,
+                "type": "integer",
+                "required": false,
+                "name": "limit",
+                "in": "query",
+                "description": "Specifies the number of results to return.",
+                "default": 20
+              },
+              {
+                "x-example": true,
+                "type": "boolean",
+                "required": false,
+                "name": "includeMembers",
+                "in": "query",
+                "description": "Whether to include member details for the conversation.",
+                "default": false
+              },
+              {
+                "x-example": 0,
+                "type": "integer",
+                "required": false,
+                "name": "membersSkip",
+                "in": "query",
+                "description": "Specifies the number of members you want to skip from the beginning.Used only if includeMembers is true. (Useful in Pagination).",
+                "default": 0
+              },
+              {
+                "x-example": 20,
+                "type": "integer",
+                "required": false,
+                "name": "membersLimit",
+                "in": "query",
+                "description": "Specifies the number of members to return.Used only if includeMembers is true.",
+                "default": 20
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationController.get_conversations",
+            "description": "Get conversations in a project in an account."
+          }
+        },
+        "/chat/conversation/title": {
+          "patch": {
+            "tags": [
+              "ConversationUpdate"
+            ],
+            "summary": "Update title of a conversation.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_update_conversation"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_update_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_update_conversation_title"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/update_conversation_title"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for updating title of a conversation in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is updating title of conversation."
+              },
+              {
+                "schema": {
+                  "$ref": "#/definitions/body_update_conversation_title"
+                },
+                "required": true,
+                "name": "body",
+                "in": "body",
+                "description": "Body parameters for updating title of a conversation."
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationUpdateController.update_conversation_title",
+            "description": "Update title of a conversation in a project in an account."
+          }
+        },
+        "/chat/conversation/settings": {
+          "patch": {
+            "tags": [
+              "ConversationUpdate"
+            ],
+            "summary": "Update settings of a conversation.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_update_conversation"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_update_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_update_conversation_settings"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/update_conversation_settings"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for updating settings of a conversation in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is updating settings of conversation."
+              },
+              {
+                "schema": {
+                  "$ref": "#/definitions/body_update_conversation_settings"
+                },
+                "required": true,
+                "name": "body",
+                "in": "body",
+                "description": "Body parameters for updating settings of a conversation."
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationUpdateController.update_conversation_settings",
+            "description": "Update settings of a conversation in a project in an account."
+          }
+        },
+        "/chat/conversation/presignedurl": {
+          "get": {
+            "tags": [
+              "PresignedUrl"
+            ],
+            "summary": "Fetch presigned url for uploading cover image of a conversation.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_presignedurl"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_presignedurl"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_presignedurl"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/presigned_url"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used to fetch presigned url for uploading cover image of a conversation in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is fetching presigned url for uploading cover image of a conversation."
+              },
+              {
+                "x-example": "New Conversation",
+                "type": "string",
+                "required": false,
+                "name": "conversationTitle",
+                "in": "query",
+                "description": "Title of the conversation for which to fetch presigned url(Mandatory for new conversation image upload)."
+              },
+              {
+                "x-example": "png",
+                "type": "string",
+                "required": true,
+                "name": "mediaExtension",
+                "in": "query",
+                "description": "Extension of image to be uploaded as cover image of conversation(Without dot)."
+              },
+              {
+                "x-example": "5fe0b8c921a38ec829956130",
+                "type": "string",
+                "required": false,
+                "name": "conversationId",
+                "in": "query",
+                "description": "Id of the conversation for which to fetch presigned url(Mandatory for existing conversation image upload)."
+              },
+              {
+                "x-example": "5fe0b8c921a38ec829956130",
+                "type": "string",
+                "required": true,
+                "name": "newConversation",
+                "in": "query",
+                "description": "Whether to fetch presigned url for a new or existing conversation image upload."
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.PresignedUrlController.presigned_url",
+            "description": "Fetch presigned url for uploading cover image of a conversation in a project in an account."
+          }
+        },
+        "/chat/conversation/image": {
+          "patch": {
+            "tags": [
+              "ConversationUpdate"
+            ],
+            "summary": "Update image of a conversation.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_update_conversation"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_update_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_update_conversation_image"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/update_conversation_image"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for updating image of a conversation in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is updating image of conversation."
+              },
+              {
+                "schema": {
+                  "$ref": "#/definitions/body_update_conversation_image"
+                },
+                "required": true,
+                "name": "body",
+                "in": "body",
+                "description": "Body parameters for updating image of a conversation."
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationUpdateController.update_conversation_image",
+            "description": "Update image of a conversation in a project in an account."
+          }
+        },
+        "/chat/conversation/details": {
+          "patch": {
+            "tags": [
+              "ConversationUpdate"
+            ],
+            "summary": "Update details(customType or metadata) of a conversation.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_update_conversation"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_update_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "400": {
+                "schema": {
+                  "$ref": "#/definitions/Error_400_update_conversation_details"
+                },
+                "description": "Bad Request"
+              },
+              "200": {
+                "schema": {
+                  "$ref": "#/definitions/update_conversation_details"
+                },
+                "description": "Ok"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for updating details(customType or metadata) of a conversation in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is updating details(customType or metadata) of conversation."
+              },
+              {
+                "schema": {
+                  "$ref": "#/definitions/body_update_conversation_details"
+                },
+                "required": true,
+                "name": "body",
+                "in": "body",
+                "description": "Body parameters for updating details(customType or metadata) of a conversation."
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationUpdateController.update_conversation_details",
+            "description": "Update details(customType or metadata) of a conversation in a project in an account."
+          }
+        },
+        "/chat/conversation": {
+          "post": {
+            "tags": [
+              "Conversation"
+            ],
+            "summary": "Create a new conversation admin.",
+            "responses": {
+              "503": {
+                "schema": {
+                  "$ref": "#/definitions/Error_503"
+                },
+                "description": "Service Unavailable"
+              },
+              "422": {
+                "schema": {
+                  "$ref": "#/definitions/Error_422"
+                },
+                "description": "Unprocessable Entity"
+              },
+              "409": {
+                "schema": {
+                  "$ref": "#/definitions/Error_409_create_conversation"
+                },
+                "description": "Conflict"
+              },
+              "404": {
+                "schema": {
+                  "$ref": "#/definitions/Error_404_create_conversation"
+                },
+                "description": "Not Found"
+              },
+              "403": {
+                "schema": {
+                  "$ref": "#/definitions/Error_403_create_conversation"
+                },
+                "description": "Forbidden"
+              },
+              "201": {
+                "schema": {
+                  "$ref": "#/definitions/create_conversation"
+                },
+                "description": "Created"
+              }
+            },
+            "parameters": [
+              {
+                "x-example": "lic-IMK9rZycjyx06Ho3laoQPZs5l2q3b+bzqxB",
+                "type": "string",
+                "required": true,
+                "name": "licenseKey",
+                "in": "header",
+                "description": "License key to be used for creating a new conversation in a project in an account."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YXQAAAADbQAAAAlhY2NvdW50SWRtAAAAGDVmM2JhZDllMjFhMzhlNTcxZTQ2OGIxMW0AAAAIa2V5c2V0SWRtAAAAJDM5ZmJlZmRlLWY1ZGMtNGQ5YS05MjYwLTk2MTY2Mjc5MjJhYm0AAAAJcHJvamVjdElkbQAAACQ1YjY5MWY0OC1lNTZmLTQwNGMtYmIxZi1kYmQ5N2MzYjgzMDVkAAZzaWduZWRuBgDT17iKdwE.RzETsnQzB6aeQCkbL4GOKtu4HTWlgofp7xhnlv_fHFW",
+                "type": "string",
+                "required": true,
+                "name": "appSecret",
+                "in": "header",
+                "description": "App secret associated with the license key used."
+              },
+              {
+                "x-example": "SFMyNTY.g3QAAAACZAAEZGF0YW0AAAAYNWZiM2MzNWYyMWEzOGVkMjI4ZWRkOTBlZAAGc2lnbmVkbgYAoNzjr3cB.P4CAS42Iq9A6KuKBpEcVEnB86fsx3FiZTHpzFz4JM0E",
+                "type": "string",
+                "required": true,
+                "name": "userToken",
+                "in": "header",
+                "description": "Token of the user who is creating conversation."
+              },
+              {
+                "schema": {
+                  "$ref": "#/definitions/body_create_conversation"
+                },
+                "required": true,
+                "name": "body",
+                "in": "body",
+                "description": "Body parameters for creating a new conversation."
+              }
+            ],
+            "operationId": "Isometrik.ConversationWeb.ConversationController.create_conversation",
+            "description": "Create a new conversation in a project in an account."
+          }
+        }
+      },
+      "info": {
+        "version": "1.0",
+        "title": "ConversationWeb"
+      },
+      "definitions": {
+        "Error_404_get_conversation_details": {
+          "type": "object",
+          "title": "Error_404_get_conversation_details",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found."
+        },
+        "Error_404_presignedurl": {
+          "type": "object",
+          "title": "Error_404_presignedurl",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found, 1 => User not found."
+        },
+        "Error_404_update_conversation": {
+          "type": "object",
+          "title": "Error_404_update_conversation",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found."
+        },
+        "get_conversation_watchers": {
+          "type": "object",
+          "title": "Response of fetch conversation watchers request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of conversation watchers being fetched successfully."
+            },
+            "conversationWatchers": {
+              "$ref": "#/definitions/Members"
+            }
+          },
+          "example": {
+            "msg": "Conversations watchers fetched successfully.",
+            "conversationWatchers": [
+              {
+                "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+                "userName": "koko",
+                "userIdentifier": "jojo2@lolo.com",
+                "userId": "5fb4feb921a38e7b81fac663",
+                "online": false,
+                "metaData": {
+                  "country": "India"
+                },
+                "lastSeen": -1,
+                "isAdmin": true
+              }
+            ]
+          },
+          "description": "Conversation watchers fetched successfully."
+        },
+        "Error_404_create_conversation": {
+          "type": "object",
+          "title": "Error_404_create_conversation",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found, 1 => Members not found or conversation creator is blocked."
+        },
+        "get_conversations": {
+          "type": "object",
+          "title": "Response of fetch conversations request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of list of conversations being fetched successfully."
+            },
+            "conversations": {
+              "$ref": "#/definitions/Conversations"
+            }
+          },
+          "example": {
+            "msg": "Conversations fetched successfully.",
+            "conversations": [
+              {
+                "updatedAt": 1611136646374,
+                "unreadMessagesCount": 0,
+                "privateOneToOne": false,
+                "metaData": {
+                  "secretChat": true
+                },
+                "members": [
+                  {
+                    "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+                    "userName": "koko",
+                    "userIdentifier": "jojo2@lolo.com",
+                    "userId": "5fb4feb921a38e7b81fac663",
+                    "searchableTags": [
+                      "Title",
+                      "Product Name",
+                      "Order Id"
+                    ],
+                    "opponentDetails": {
+                      "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+                      "userName": "Mark waugh",
+                      "userIdentifier": "mark@gmail.com",
+                      "userId": "5fb3daec21a38e73938a8d5b",
+                      "online": true,
+                      "metaData": {
+                        "country": "IN"
+                      },
+                      "lastSeen": -1
+                    },
+                    "online": false,
+                    "metaData": {
+                      "country": "India"
+                    },
+                    "lastSeen": -1,
+                    "isAdmin": true
+                  }
+                ],
+                "lastReadAt": {
+                  "5fb3daec21a38e73938a8d5b": 1611927397059,
+                  "5fb3c35f21a38ed228edd90e": 1508802919966
+                },
+                "lastMessageDetails": {},
+                "isGroup": true,
+                "customType": "type",
+                "createdByUserName": "Stephen Hawking",
+                "createdByUserImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+                "createdBy": "5fb3c35f21a38ed228edd90e",
+                "createdAt": 1611136646374,
+                "conversationType": 2,
+                "conversationTitle": "jojo2@lolo.com",
+                "conversationImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+                "conversationId": "6007fe8621a38e010f5be462",
+                "config": {
+                  "typingEvents": false,
+                  "readEvents": false,
+                  "pushNotifications": false
+                },
+                "adminCount": 1
+              }
+            ]
+          },
+          "description": "List of conversations fetched successfully."
+        },
+        "update_conversation_details": {
+          "type": "object",
+          "title": "Response of update conversation details(customType or metadata) request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of conversation details(customType or metadata) being successfully updated."
+            }
+          },
+          "example": {
+            "msg": "Conversation details updated successfully."
+          },
+          "description": "Successfully updated conversation details(customType or metadata)."
+        },
+        "Config": {
+          "type": "object",
+          "title": "Conversation config details",
+          "required": [
+            "pushNotifications",
+            "readEvents",
+            "typingEvents"
+          ],
+          "properties": {
+            "typingEvents": {
+              "type": "boolean",
+              "description": "Whether to allow typing message events."
+            },
+            "readEvents": {
+              "type": "boolean",
+              "description": "Whether to allow send/fetch of read/delivery event for messages."
+            },
+            "pushNotifications": {
+              "type": "boolean",
+              "description": "Whether to send push."
+            }
+          },
+          "description": "Model containing details of the conversation config."
+        },
+        "Error_403_create_conversation": {
+          "type": "object",
+          "title": "Error_403_create_conversation",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Allowed messages limit shall be exceeded, 2 => Allowed members limit shall be exceeded, 3 => Allowed conversation limit shall be exceeded, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+        },
+        "Error_400_update_conversation_title": {
+          "type": "object",
+          "title": "Error_400_update_conversation_title",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Conversation not found or not allowed to update conversation title."
+        },
+        "update_conversation_title": {
+          "type": "object",
+          "title": "Response of update conversation title request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of conversation title being successfully updated."
+            }
+          },
+          "example": {
+            "msg": "Conversation title updated successfully."
+          },
+          "description": "Successfully updated conversation title."
+        },
+        "update_conversation_settings": {
+          "type": "object",
+          "title": "Response of update conversation settings request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of conversation settings being successfully updated."
+            }
+          },
+          "example": {
+            "msg": "Conversation settings updated successfully."
+          },
+          "description": "Successfully updated conversation settings."
+        },
+        "Error_404_get_conversation_watchers": {
+          "type": "object",
+          "title": "Error_404_get_conversation_watchers",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found."
+        },
+        "body_create_conversation": {
+          "type": "object",
+          "title": "Body of the create new conversation request",
+          "required": [
+            "pushNotifications",
+            "typingEvents",
+            "readEvents",
+            "members",
+            "isGroup",
+            "conversationType"
+          ],
+          "properties": {
+            "typingEvents": {
+              "type": "boolean",
+              "description": "Whether to enable message typing events for newly created conversation."
+            },
+            "searchableTags": {
+              "type": "array",
+              "description": "List containing tags by which conversation can be searched(Maximum 20)."
+            },
+            "readEvents": {
+              "type": "boolean",
+              "description": "Whether to enable message delivery/read events for newly created conversation."
+            },
+            "pushNotifications": {
+              "type": "boolean",
+              "description": "Whether to enable push notifications for newly created conversation."
+            },
+            "metaData": {
+              "type": "object",
+              "description": "Metadata of the conversation, if any."
+            },
+            "members": {
+              "type": "array",
+              "description": "List containing ids of all the members to be added to newly created conversation.It doesn't contains the id of the user who is creating conversation as well."
+            },
+            "isGroup": {
+              "type": "boolean",
+              "description": "Whether conversation to be created is a group or not."
+            },
+            "customType": {
+              "type": "string",
+              "description": "Custom type of the conversation, if any."
+            },
+            "conversationType": {
+              "type": "integer",
+              "description": "Type of conversation to be created.Allowed value are 0,1 and 2.(private-0, public-1 and open-2)"
+            },
+            "conversationTitle": {
+              "type": "string",
+              "description": "Title of the conversation, required for all other conversations except private one-one conversation."
+            },
+            "conversationImageUrl": {
+              "type": "string",
+              "description": "Image of the conversation, required for all other conversations except private one-one conversation."
+            }
+          },
+          "example": {
+            "typingEvents": true,
+            "searchableTags": [
+              "Title",
+              "Product Name",
+              "Order Id"
+            ],
+            "readEvents": true,
+            "pushNotifications": true,
+            "metaData": {
+              "open conversation": true
+            },
+            "members": [
+              "5fb3daec21a38e73938a8d5b",
+              "5fb3c35f21a38ed228edd90e",
+              "5fb4feb921a38e7b81fac663"
+            ],
+            "isGroup": true,
+            "customType": "Test conversations",
+            "conversationType": 2,
+            "conversationTitle": "Awesome conversation",
+            "conversationImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+          },
+          "description": "Details of the create new conversation request."
+        },
+        "Error_400_update_conversation_image": {
+          "type": "object",
+          "title": "Error_400_update_conversation_image",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Conversation not found or not allowed to update conversation image."
+        },
+        "body_update_conversation_settings": {
+          "type": "object",
+          "title": "Body of the update conversation settings request",
+          "required": [
+            "conversationId"
+          ],
+          "properties": {
+            "typingEvents": {
+              "type": "boolean",
+              "description": "Whether to allow typing message events."
+            },
+            "readEvents": {
+              "type": "boolean",
+              "description": "Whether to allow send/fetch of read/delivery event for messages."
+            },
+            "pushNotifications": {
+              "type": "boolean",
+              "description": "Whether to send push."
+            },
+            "conversationId": {
+              "type": "string",
+              "description": "Id of the conversation to update settings of."
+            }
+          },
+          "example": {
+            "typingEvents": true,
+            "readEvents": true,
+            "pushNotifications": false,
+            "conversationId": "5fe0b8c921a38ec829956130"
+          },
+          "description": "Details of the update conversation settings request."
+        },
+        "Error_409_create_conversation": {
+          "type": "object",
+          "title": "Error_409_create_conversation",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Private one to one conversation already exists."
+        },
+        "Conversation": {
+          "type": "object",
+          "title": "Conversation details",
+          "required": [
+            "searchableTags",
+            "membersCount",
+            "adminCount",
+            "conversationId",
+            "conversationImageUrl",
+            "conversationTitle",
+            "conversationType",
+            "createdByUserImageUrl",
+            "createdByUserName",
+            "createdBy",
+            "customType",
+            "metaData",
+            "isGroup",
+            "lastMessageDetails",
+            "lastReadAt",
+            "privateOneToOne",
+            "unreadMessagesCount",
+            "updatedAt"
+          ],
+          "properties": {
+            "updatedAt": {
+              "type": "integer",
+              "description": "Epoch time at which conversation was last updated at."
+            },
+            "unreadMessagesCount": {
+              "type": "integer",
+              "description": "Number of unread messages in conversation for the given user."
+            },
+            "searchableTags": {
+              "type": "array",
+              "description": "List containing tags by which conversation can be searched."
+            },
+            "privateOneToOne": {
+              "type": "boolean",
+              "description": "Whether given conversation is provate one to one."
+            },
+            "opponentDetails": {
+              "$ref": "#/definitions/Opponent"
+            },
+            "metaData": {
+              "type": "object",
+              "description": "Object containing metadata of the conversation if present otherwise null."
+            },
+            "membersCount": {
+              "type": "integer",
+              "description": "Number of members in the conversation."
+            },
+            "members": {
+              "$ref": "#/definitions/Members"
+            },
+            "lastReadAt": {
+              "type": "object",
+              "description": "Object containing details of last time at which a message in given conversation has been read by respective user."
+            },
+            "lastMessageDetails": {
+              "type": "object",
+              "description": "Object containing details of the last message in conversation."
+            },
+            "isGroup": {
+              "type": "boolean",
+              "description": "Whether conversation is group or one-one conversation."
+            },
+            "customType": {
+              "type": "string",
+              "description": "Custom type of conversation if present otherwise null."
+            },
+            "createdByUserName": {
+              "type": "string",
+              "description": "Name of the user who created the conversation."
+            },
+            "createdByUserImageUrl": {
+              "type": "string",
+              "description": "Url of the image of the user who created the conversation."
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Id of the user who created the conversation."
+            },
+            "conversationType": {
+              "type": "integer",
+              "description": "Type of the conversation(0-private,1-public and 2-open)."
+            },
+            "conversationTitle": {
+              "type": "string",
+              "description": "Title of conversation.null for private one-one conversations."
+            },
+            "conversationImageUrl": {
+              "type": "string",
+              "description": "Image of conversation.null for private one-one conversations."
+            },
+            "conversationId": {
+              "type": "string",
+              "description": "Unique id of the conversation."
+            },
+            "config": {
+              "$ref": "#/definitions/Config"
+            },
+            "adminCount": {
+              "type": "integer",
+              "description": "Number of admins in the conversation."
+            }
+          },
+          "description": "Model containing details of the conversation fetched."
+        },
+        "Error_400_get_conversation_watchers": {
+          "type": "object",
+          "title": "Error_400_get_conversation_watchers",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Either conversation not found or not allowed to fetch watchers."
+        },
+        "Error_404_get_conversations": {
+          "type": "object",
+          "title": "Error_404_get_conversations",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found, 1 => Conversations not found."
+        },
+        "Error_400_update_conversation_details": {
+          "type": "object",
+          "title": "Error_400_update_conversation_details",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Conversation not found or not allowed to update conversation details."
+        },
+        "Error_503": {
+          "type": "object",
+          "title": "Error_503",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Service Unavailable."
+        },
+        "create_conversation": {
+          "type": "object",
+          "title": "Response of create conversation request",
+          "required": [
+            "newConversation",
+            "conversationId",
+            "msg"
+          ],
+          "properties": {
+            "newConversation": {
+              "type": "boolean",
+              "description": "Whether a new conversation was created or not."
+            },
+            "msg": {
+              "type": "string",
+              "description": "Message of conversation being successfully created."
+            },
+            "conversationId": {
+              "type": "string",
+              "description": "Id of the newly created conversation."
+            }
+          },
+          "example": {
+            "newConversation": true,
+            "msg": "Conversation created successfully.",
+            "conversationId": "5ffc3db621a38e05e43b8c58"
+          },
+          "description": "Successfully created a conversation."
+        },
+        "Error_403_update_conversation": {
+          "type": "object",
+          "title": "Error_403_update_conversation",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => Allowed messages limit exceeded, 1 => Allowed messages limit shall be exceeded, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+        },
+        "get_conversations_count": {
+          "type": "object",
+          "title": "Response of fetch conversations count request",
+          "required": [
+            "conversationsCount",
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of conversations count being fetched successfully."
+            },
+            "conversationsCount": {
+              "type": "integer",
+              "description": "Number of conversations."
+            }
+          },
+          "example": {
+            "msg": "Conversations count fetched successfully.",
+            "conversationsCount": 2
+          },
+          "description": "Conversations count fetched successfully."
+        },
+        "Conversations": {
+          "type": "array",
+          "title": "Conversations fetch",
+          "items": {
+            "$ref": "#/definitions/Conversation"
+          },
+          "description": "All conversations list."
+        },
+        "Error_400_presignedurl": {
+          "type": "object",
+          "title": "Error_400_presignedurl",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Conversation not found or not allowed to update conversation image."
+        },
+        "Error_400_get_conversation_details": {
+          "type": "object",
+          "title": "Error_400_get_conversation_details",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Either conversation not found or not allowed to fetch details."
+        },
+        "Error_403_conversation": {
+          "type": "object",
+          "title": "Error_403_conversation",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "11"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+        },
+        "update_conversation_image": {
+          "type": "object",
+          "title": "Response of update conversation image request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of conversation image being successfully updated."
+            }
+          },
+          "example": {
+            "msg": "Conversation image updated successfully."
+          },
+          "description": "Successfully updated conversation image."
+        },
+        "presigned_url": {
+          "type": "object",
+          "title": "Response of fetch presigned url for uploading cover image of a conversation request",
+          "required": [
+            "ttl",
+            "mediaUrl",
+            "presignedUrl",
+            "msg"
+          ],
+          "properties": {
+            "ttl": {
+              "type": "integer",
+              "description": "Number of seconds after which presigned url expires."
+            },
+            "presignedUrl": {
+              "type": "string",
+              "description": "Url to be used for uploading of media."
+            },
+            "msg": {
+              "type": "string",
+              "description": "Message of presigned url being successfully fetched."
+            },
+            "mediaUrl": {
+              "type": "string",
+              "description": "Url to be used for retrieval of uploaded media."
+            }
+          },
+          "example": {
+            "ttl": 600,
+            "presignedUrl": "https://ism-attachments.s3.us-west-2.amazonaws.com/test/ELB.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATYFARKGKM57LC3WG%2F20220704%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220704T103245Z&X-Amz-Expires=300&X-Amz-Signature=c06896239eb96e8032cdb7be3de7ff1e4de60d78f5977ce681bf5ee9df5aad03&X-Amz-SignedHeaders=host",
+            "msg": "Presigned url fetched successfully.",
+            "mediaUrl": "http://s3.amazonaws.com/my-bucket/photos/3c55bf4c-cc9f-4ef4-bb53-f7b4190594e1.jpg"
+          },
+          "description": "Successfully fetched presigned url for uploading cover image of a conversation."
+        },
+        "body_update_conversation_title": {
+          "type": "object",
+          "title": "Body of the update conversation title request",
+          "required": [
+            "conversationTitle",
+            "conversationId"
+          ],
+          "properties": {
+            "conversationTitle": {
+              "type": "string",
+              "description": "New title of the conversation."
+            },
+            "conversationId": {
+              "type": "string",
+              "description": "Id of the conversation to update title of."
+            }
+          },
+          "example": {
+            "conversationTitle": "New title",
+            "conversationId": "5fe0b8c921a38ec829956130"
+          },
+          "description": "Details of the update conversation title request."
+        },
+        "Opponent": {
+          "type": "object",
+          "title": "Opponent details",
+          "required": [
+            "metaData",
+            "lastSeen",
+            "online",
+            "userId",
+            "userIdentifier",
+            "userProfileImageUrl",
+            "userName"
+          ],
+          "properties": {
+            "userProfileImageUrl": {
+              "type": "string",
+              "description": "Profilepic associated with the given opponent."
+            },
+            "userName": {
+              "type": "string",
+              "description": "Name associated with the given opponent."
+            },
+            "userIdentifier": {
+              "type": "string",
+              "description": "Identifier associated with the given opponent."
+            },
+            "userId": {
+              "type": "string",
+              "description": "Id associated with the given opponent."
+            },
+            "online": {
+              "type": "boolean",
+              "description": "Whether opponent is online now."
+            },
+            "metaData": {
+              "type": "object",
+              "description": "Object containing metadata of the opponent, if any."
+            },
+            "lastSeen": {
+              "type": "integer",
+              "description": "Epoch time at which opponent was last seen online.Value is -1 incase user is online now"
+            }
+          },
+          "description": "Model containing details of the opponent for the private 1-1 conversation."
+        },
+        "Error_403_presignedurl": {
+          "type": "object",
+          "title": "Error_403_presignedurl",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => Limit of maximum allowed conversations reached, 11 => Account not verified yet, 12 => Account has been suspended, 13 => Invalid account status, 14 => Billing subscription not added, 15 => Billing subscription expired or not renewed or canceled, 16 => Invalid project status, 17 => Billing subscription expired."
+        },
+        "Member": {
+          "type": "object",
+          "title": "Member details",
+          "required": [
+            "isAdmin",
+            "metaData",
+            "lastSeen",
+            "online",
+            "userId",
+            "userIdentifier",
+            "userProfileImageUrl",
+            "userName"
+          ],
+          "properties": {
+            "userProfileImageUrl": {
+              "type": "string",
+              "description": "Profilepic associated with the given member."
+            },
+            "userName": {
+              "type": "string",
+              "description": "Name associated with the given member."
+            },
+            "userIdentifier": {
+              "type": "string",
+              "description": "Identifier associated with the given member."
+            },
+            "userId": {
+              "type": "string",
+              "description": "Id associated with the given member."
+            },
+            "online": {
+              "type": "boolean",
+              "description": "Whether member is online now."
+            },
+            "metaData": {
+              "type": "object",
+              "description": "Object containing metadata of the member, if any."
+            },
+            "lastSeen": {
+              "type": "integer",
+              "description": "Epoch time at which member was last seen online.Value is -1 incase user is online now"
+            },
+            "isAdmin": {
+              "type": "boolean",
+              "description": "Whether member is admin of conversation."
+            }
+          },
+          "description": "Model containing details of the member fetched."
+        },
+        "body_update_conversation_image": {
+          "type": "object",
+          "title": "Body of the update conversation image request",
+          "required": [
+            "conversationImageUrl",
+            "conversationId"
+          ],
+          "properties": {
+            "conversationImageUrl": {
+              "type": "string",
+              "description": "Url of the new image of the conversation."
+            },
+            "conversationId": {
+              "type": "string",
+              "description": "Id of the conversation to update image of."
+            }
+          },
+          "example": {
+            "conversationImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+            "conversationId": "5fe0b8c921a38ec829956130"
+          },
+          "description": "Details of the update conversation image request."
+        },
+        "body_update_conversation_details": {
+          "type": "object",
+          "title": "Body of the update conversation details(customType or metadata) request",
+          "required": [
+            "conversationId"
+          ],
+          "properties": {
+            "searchableTags": {
+              "type": "array",
+              "description": "List containing tags by which conversation can be searched(Maximum 20)."
+            },
+            "metaData": {
+              "type": "object",
+              "description": "Metadata of the conversation to be updated, if any."
+            },
+            "customType": {
+              "type": "string",
+              "description": "Custom type of the conversation to be updated, if any."
+            },
+            "conversationId": {
+              "type": "string",
+              "description": "Id of the conversation to update details(customType or metadata) of."
+            }
+          },
+          "example": {
+            "searchableTags": [
+              "Title",
+              "Product Name",
+              "Order Id"
+            ],
+            "metaData": {
+              "country": "India"
+            },
+            "customType": "Secret Chat",
+            "conversationId": "5fe0b8c921a38ec829956130"
+          },
+          "description": "Details of the update conversation details(customType or metadata) request."
+        },
+        "Error_404_get_conversations_count": {
+          "type": "object",
+          "title": "Error_404_get_conversations_count",
+          "required": [
+            "errorCode",
+            "error"
+          ],
+          "properties": {
+            "errorCode": {
+              "type": "integer",
+              "description": "0"
+            },
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "errorCode- 0 => licenseKey not found, 1 => Conversations not found."
+        },
+        "get_conversation_details": {
+          "type": "object",
+          "title": "Response of fetch conversation details request",
+          "required": [
+            "msg"
+          ],
+          "properties": {
+            "msg": {
+              "type": "string",
+              "description": "Message of conversation details being fetched successfully."
+            },
+            "conversationDetails": {
+              "$ref": "#/definitions/Conversation"
+            }
+          },
+          "example": {
+            "msg": "Conversations details fetched successfully.",
+            "conversationDetails": {
+              "updatedAt": 1611136646374,
+              "unreadMessagesCount": 0,
+              "searchableTags": [
+                "Title",
+                "Product Name",
+                "Order Id"
+              ],
+              "privateOneToOne": false,
+              "opponentDetails": {
+                "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+                "userName": "Mark waugh",
+                "userIdentifier": "mark@gmail.com",
+                "userId": "5fb3daec21a38e73938a8d5b",
+                "online": true,
+                "metaData": {
+                  "country": "IN"
+                },
+                "lastSeen": -1
+              },
+              "metaData": {
+                "secretChat": true
+              },
+              "membersCount": 2,
+              "members": [
+                {
+                  "userProfileImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+                  "userName": "koko",
+                  "userIdentifier": "jojo2@lolo.com",
+                  "userId": "5fb4feb921a38e7b81fac663",
+                  "online": false,
+                  "metaData": {
+                    "country": "India"
+                  },
+                  "lastSeen": -1,
+                  "isAdmin": true
+                }
+              ],
+              "lastReadAt": {
+                "5fb3daec21a38e73938a8d5b": 1611927397059,
+                "5fb3c35f21a38ed228edd90e": 1508802919966
+              },
+              "lastMessageDetails": {},
+              "isGroup": true,
+              "customType": "type",
+              "createdByUserName": "Stephen Hawking",
+              "createdByUserImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+              "createdBy": "5fb3c35f21a38ed228edd90e",
+              "createdAt": 1611136646374,
+              "conversationType": 2,
+              "conversationTitle": "jojo2@lolo.com",
+              "conversationImageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+              "conversationId": "6007fe8621a38e010f5be462",
+              "config": {
+                "typingEvents": false,
+                "readEvents": false,
+                "pushNotifications": false
+              },
+              "adminCount": 1
+            }
+          },
+          "description": "Conversation details fetched successfully."
+        },
+        "Error_422": {
+          "type": "object",
+          "title": "Error_422",
+          "properties": {
+            "error": {
+              "type": "object",
+              "required": [
+                "error_key"
+              ],
+              "properties": {
+                "error_key": {
+                  "type": "array",
+                  "example": [
+                    "The message of the first error raised.",
+                    "The message of the second error raised."
+                  ],
+                  "description": "Array containing list of error messages."
+                }
+              }
+            }
+          },
+          "description": "Unprocessable entity."
+        },
+        "Members": {
+          "type": "array",
+          "title": "Members fetch",
+          "items": {
+            "$ref": "#/definitions/Member"
+          },
+          "description": "All members list."
+        },
+        "Error_400_update_conversation_settings": {
+          "type": "object",
+          "title": "Error_400_update_conversation_settings",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "The message of the error raised."
+            }
+          },
+          "description": "Conversation not found or not allowed to update conversation settings."
+        }
+      }
+    },
+  "customOptions": {}
+};
+  url = options.swaggerUrl || url
+  var urls = options.swaggerUrls
+  var customOptions = options.customOptions
+  var spec1 = options.swaggerDoc
+  var swaggerOptions = {
+    spec: spec1,
+    url: url,
+    urls: urls,
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout"
+  }
+  for (var attrname in customOptions) {
+    swaggerOptions[attrname] = customOptions[attrname];
+  }
+  var ui = SwaggerUIBundle(swaggerOptions)
+
+  if (customOptions.oauth) {
+    ui.initOAuth(customOptions.oauth)
+  }
+
+  if (customOptions.authAction) {
+    ui.authActions.authorize(customOptions.authAction)
+  }
+
+  window.ui = ui
+}
